@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * index¿ØÖÆÆ÷
  */
 @Controller
-@RequestMapping(value = "/index")
 public class IndexController {
   /**
      *
@@ -16,8 +15,8 @@ public class IndexController {
      * @throws Exception
      */
     @RequestMapping("/index")
-    @ResponseBody
     public String index() throws Exception {
+    	System.out.println("----");
     	return "index";
     }
 
