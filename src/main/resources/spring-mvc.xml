@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+ xmlns:p="http://www.springframework.org/schema/p"  
+xmlns:mvc="http://www.springframework.org/schema/mvc"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xmlns:context="http://www.springframework.org/schema/context"  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans.xsd  
+           http://www.springframework.org/schema/context  
+         http://www.springframework.org/schema/context/spring-context.xsd  
+           http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd"  
+            > 
+    <!-- 启动自动扫描 -->
+    <context:component-scan base-package="com.jtd.*" />
+    
+    <!-- 注册MVC注解驱动 -->
+    <mvc:annotation-driven />
+    
+    <!-- 静态资源可访问的设置方式 -->
+    <mvc:default-servlet-handler />
+    <!-- 文件扫描 -->
+    <!-- <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="properties" ref="configProperties"/>
+    </bean> -->
+    
+    <!-- 配置视图解析器，可以显式设置，也可以不设置，不设置会依据SpringMVC的默认设置 -->
+    <!-- 配置freeMarker视图解析器 -->    
+<!--     <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">    
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>    
+        <property name="contentType" value="text/html; charset=utf-8"/>    
+        <property name="cache" value="true" />    
+        <property name="suffix" value=".ftl" />  
+        <property name="order" value="0"/>    
+    </bean>  
+    
+    配置freeMarker的模板路径    
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">    
+        <property name="templateLoaderPath">    
+        	<list>
+	            <value>/WEB-INF/ftl/</value>  
+	            <value>/</value> 
+            </list>   
+        </property>    
+        <property name="freemarkerVariables">    
+            <map>    
+                <entry key="xml_escape" value-ref="fmXmlEscape" />    
+            </map>    
+        </property>    
+        <property name="defaultEncoding">    
+            <value>utf-8</value>    
+        </property>    
+        <property name="freemarkerSettings">    
+            <props>    
+                <prop key="template_update_delay">3600</prop>    
+            </props>    
+        </property>
+    </bean>    
+         
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>  
+    -->
+    
+     
+  <!--   <context:component-scan base-package="com.cpic">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan> -->
+
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">10</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="datetime_format">yyyy-MM-dd</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="number_format">#.##</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true"/>
+        <property name="prefix" value="/WEB-INF/ftl/"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+        <property name="requestContextAttribute" value="request"/>
+        <property name="order" value="1"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="2"/>
+    </bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/html/"/>
+        <property name="suffix" value=".html"/>
+        <property name="order" value="3"/>
+    </bean>
+</beans>
