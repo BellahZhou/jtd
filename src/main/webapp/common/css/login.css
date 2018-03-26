@@ -1,0 +1,118 @@
+*{
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Î¢ÈíÑÅºÚ,Tahoma,Arial,sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -box-sizing: border-box;
+    padding:0;
+    margin:0;
+    list-style:none;
+    box-sizing: border-box;
+}
+
+body,html{
+    height:100%;
+    overflow:hidden;
+}
+body{
+    background:url(../images/logo.png) no-repeat center;
+    background-size: cover;
+}
+a{
+    color:#1e82d2;
+    text-decoration:none;
+    cursor:pointer;
+}
+.login{
+    height: 420px;
+    width: 420px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-sizing: border-box;
+	  position: absolute; 
+	  left: 50%; top: 50%;    
+	  transform: translate(-50%, -50%);
+}
+.login_box{ height:350px;}
+
+.message {
+    margin: 10px 0 0 -58px;
+    padding: 0 10px 0 60px;
+    position: relative;
+	background:#1E82D2 url(../images/login_logo.png) 60px 16px no-repeat;
+    color: #fff;
+    font-size: 16px;
+	height:60px;
+}
+#darkbannerwrap {
+    background: url(../images/aiwrap.png);
+    width: 18px;
+    height: 10px;
+    margin: 0 0 20px -58px;
+    position: relative;
+}
+
+input[type=text],
+input[type=file],
+input[type=password],
+input[type=email], select {
+    border: 1px solid #DCDEE0;
+    vertical-align: middle;
+    border-radius: 3px;
+    height: 50px;
+    padding: 0px 16px;
+    font-size: 14px;
+    color: #555555;
+    outline:none;
+    width:100%;
+}
+
+input.yzm_text{ float:left; width:203px;}
+.yzm_img{ float:right; cursor:pointer; height:50px; width:120px;    border-radius: 3px;}
+
+input[type=submit],
+input[type=reset],
+input[type=button]{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 12px 24px;
+    margin: 0px;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #FC9153;
+    border-radius: 3px;
+    border: none;
+    -webkit-appearance: none;
+    outline:none;
+    width:100%;
+}
+hr.hr15 {
+    height: 15px;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+	clear:both;
+}
+hr.hr20 {
+    height: 20px;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+.check_input{ position:relative; margin-right:5px; top:2px;}
+.fl{ float:left;}
+.fr{ float:right}
+.login_step{ text-align:center; font-size:24px; line-height:35px; height:100px; color:#333}
+.error_text{ text-align:center; color:#F00; padding-top:15px;}
+.success_ico{ width:100px; height:100px; display:inline-block; margin:0 auto; background: url(../images/success.png) no-repeat; margin-bottom:15px;}
+.success_box{ text-align:center}
+.success_box strong{ font-weight:normal; color:#44bea3; font-size:24px; display:block; line-height:24px;}
+.c_text{ color:#a9a9a9; font-size:14px; padding-top:25px; line-height:20px; padding-bottom:5px;}
+.c_e23{ color:#e23a3a}
