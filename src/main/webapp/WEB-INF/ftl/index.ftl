@@ -1,11 +1,51 @@
 <#include "/common/ftl/common.ftl"/>
-<nav class="navbar navbar-blue" role="navigation">
+<@body>
+<nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0px;">
 	<div class="navbar-header">
-        <a href="${ctx}/index.shtml"><img src="${ctx}/common/images/logo.png"></a>
+        <a class="navbar-brand"  href="${ctx}/index.shtml">鸡汤店</a>
     </div>
   	<ul class="nav navbar-nav pull-right">
         <li><a>欢迎&nbsp;<b style="color: #fff;">${user.username}</b>&nbsp;登录</a></li>
         <li><a href="${ctx}/unifiedlogout.shtml"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a></li>
     </ul>
-
 </nav>
+
+<style>
+.main{
+    background:url("${ctx}/common/images/icon_2_b.png") no-repeat center;
+    background-size: cover;
+}
+</style>
+
+<div class="main" data-ng-app="indexApp" data-ng-controller="indexCtrl">
+       <div ng-repeat="x in menus" style="width:400px;height:400px;border:1px solid #DDD;overflow:hidden;margin:0 auto;">
+       	<img  id="x.sortNo" ng-src="${ctx}/common/images/{{x.menuIcon}}_b.png">
+           <h3 ng-bind="x.menuName"></h3>
+       </div>
+</div>
+	
+
+	<@javascript>
+	    <script type="text/javascript">
+	        var indexApp = angular.module("indexApp", ["commApp","ngTouch"]);
+	        indexApp.controller("indexCtrl", ['$scope', '$Ajax','$swipe','$timeout', function ($scope, $Ajax,$swipe,$timeout) {
+	            $Ajax({url: "${ctx}/getTopMenus.do"}).then(function (data) {
+	                $scope.menus = data;
+	            	
+	            });
+	            
+	            $swipe.bind($("#123"),{
+	            	'move':function(){
+	            		debugger
+	            		$("#1").css("display","none");
+	            		$timeout(function(){
+	            			$("#2").css("display","block");
+	            		})
+	            	}
+	            });
+	            
+	            
+	        }]);
+	    </script>
+    </@javascript>
+</@body>

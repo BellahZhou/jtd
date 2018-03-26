@@ -15,6 +15,10 @@
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/frame3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
 
     <script type="text/javascript" src="${ctx}/common/js/jquery-1.11.1.min.js"></script>
+     <script type="text/javascript" src="${ctx}/common/js/angular/angular-1.3.1.min.js"></script>
+    <script type="text/javascript" src="${ctx}/common/js/angular/angular.ajax.js"></script>
+    <script type="text/javascript" src="${ctx}/common/js/angular/angular.common.js"></script>
+        
     <script type="text/javascript">
         var contextPath = "${ctx}";
         $.extend(Array.prototype, {
@@ -41,7 +45,7 @@
             }
         });
     </script>
-    <script type="text/javascript" src="${ctx}/common/js/angular/angular-1.3.1.min.js"></script>
+   	<script src="https://cdn.bootcss.com/angular-touch/1.3.1/angular-touch.min.js"></script>
     <script type="text/javascript" src="${ctx}/common/frame3rd/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <#macro header>
     <#nested />

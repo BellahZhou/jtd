@@ -8,8 +8,6 @@ public class Role {
 	private String roleCode;
 	private String roleDesc;
 	private String roleType;
-	
-	private Set<Resource> resources;
 	private String canDelete;
 	public Long getId() {
 		return id;
@@ -46,12 +44,6 @@ public class Role {
 	}
 	public void setCanDelete(String canDelete) {
 		this.canDelete = canDelete;
-	}
-	public Set<Resource> getResources() {
-		return resources;
-	}
-	public void setResources(Set<Resource> resources) {
-		this.resources = resources;
 	}
 	
 	

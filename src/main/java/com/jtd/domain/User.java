@@ -13,12 +13,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;  
-import org.springframework.security.core.GrantedAuthority;  
-import org.springframework.security.core.authority.SimpleGrantedAuthority;  
-import org.springframework.security.core.userdetails.UserDetails;  
   
 @Table(name = "TB_USER")   
-public class User implements UserDetails {  
+public class User {  
       
     private static final long serialVersionUID = 8026813053768023527L;  
     @Id
@@ -45,35 +42,6 @@ public class User implements UserDetails {
           
     }  
       
-    /** 
-     * Returns the authorites string 
-     *  
-     * eg.  
-     *    downpour --- ROLE_ADMIN,ROLE_USER 
-     *    robbin --- ROLE_ADMIN 
-     *  
-     * @return 
-     */  
-    public String getAuthoritiesString() {  
-        List<String> authorities = new ArrayList<String>();  
-        for(GrantedAuthority authority : this.getAuthorities()) {  
-            authorities.add(authority.getAuthority());  
-        }  
-        return StringUtils.join(authorities, ",");  
-    }  
-  
-    @Override  
-    public Collection<? extends GrantedAuthority> getAuthorities() {  
-        // 根据自定义逻辑来返回用户权限，如果用户权限返回空或者和拦截路径对应权限不同，验证不通过  
-        if(!roles.isEmpty()){  
-            List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();  
-            GrantedAuthority au = new SimpleGrantedAuthority("ROLE_USER");  
-            list.add(au);  
-            return list;  
-        }  
-        return null;  
-    }  
-  
     /*  
      * 密码 
      */  
@@ -123,32 +91,6 @@ public class User implements UserDetails {
      */  
     public Set<Role> getRoles() {  
         return roles;  
-    }  
-  
-    /** 
-     * @return the roleResources 
-     */  
-    public Map<String, List<Resource>> getRoleResources() {  
-        // init roleResources for the first time  
-        System.out.println("---------------------------------------------------");  
-        if(this.roleResources == null) {  
-              
-            this.roleResources = new HashMap<String, List<Resource>>();  
-              
-            for(Role role : this.roles) {  
-                String roleName = role.getRoleName();  
-                Set<Resource> resources = role.getResources();  
-                for(Resource resource : resources) {  
-                    String key = roleName + "_" + resource.getType();  
-                    if(!this.roleResources.containsKey(key)) {  
-                        this.roleResources.put(key, new ArrayList<Resource>());  
-                    }  
-                    this.roleResources.get(key).add(resource);                    
-                }  
-            }  
-              
-        }  
-        return this.roleResources;  
     }  
   
   
