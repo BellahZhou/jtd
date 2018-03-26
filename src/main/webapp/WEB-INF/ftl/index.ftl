@@ -12,14 +12,14 @@
 
 <style>
 .main{
-    background:url("${ctx}/common/images/icon_2_b.png") no-repeat center;
+    background:url("${ctx}/common/images/warm.png") no-repeat center;
     background-size: cover;
 }
 </style>
 
 <div class="main" data-ng-app="indexApp" data-ng-controller="indexCtrl">
-       <div ng-repeat="x in menus" style="width:400px;height:400px;border:1px solid #DDD;overflow:hidden;margin:0 auto;">
-       	<img  id="x.sortNo" ng-src="${ctx}/common/images/{{x.menuIcon}}_b.png">
+       <div ng-repeat="x in menus" style="width:300px;height:160px;aligh:center;">
+       	<img  id="x.sortNo" ng-src="${ctx}/common/images/{{x.menuIcon}}_b.png" class="img-circle" style="width:100px;height:100px">
            <h3 ng-bind="x.menuName"></h3>
        </div>
 </div>
