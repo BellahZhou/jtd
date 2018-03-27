@@ -182,17 +182,6 @@ body{ background:none;}
 @media (min-width:768px){.modal-dialog{margin:0 auto;top:50%; left:50%; position:absolute}}
 .num_text{position: absolute;  left: 100%;  top: 2px;  line-height: 28px;  margin-left: -55px;  background: #fff;  padding-left: 5px;  text-align: right;  min-width: 35px; color: #999 }
 .form-control[disabled]+.num_text,.form-control[readonly]+.num_text{ background:#eee}
-/*.tab_frame_body .form-control,fieldset .form-control {
-    border-radius: 3px;
-    font-size: 12px;
-    height: 30px;
-    line-height: 1.5;
-    padding: 5px 10px;
-}
-.errow_text{ line-height:28px;}
-.errow_text i{ top:6px;}.right_ico{ top:10px;}.form-horizontal .control-label.auto-label{ line-height:14px;}
-.tab_frame_body .form-horizontal .control-label,fieldset .form-horizontal .control-label{ padding-top:4px;}
-*/
 
 .data_table textarea.form-control{height:30px; overflow: auto}
 .tab_frame_body .help-block.mbtm_10{margin-bottom: 10px;}

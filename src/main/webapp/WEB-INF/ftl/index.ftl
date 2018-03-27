@@ -32,6 +32,7 @@
 	            
 	            $scope.goPage = function (x) {
 	                if(x.hasAuth === '1'){
+	                	debugger
 	                    window.location.href = "${ctx}/menu_index_" + x.id + ".shtml";
 	                }
 	            };
