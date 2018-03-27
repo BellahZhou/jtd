@@ -13,10 +13,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="format-detection" content="telephone=no"/>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/frame3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
-
+    <link rel="stylesheet" type="text/css" href="${ctx}/common/css/common.css"/>
     <script type="text/javascript" src="${ctx}/common/js/jquery-1.11.1.min.js"></script>
      <script type="text/javascript" src="${ctx}/common/js/angular/angular-1.3.1.min.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular.ajax.js"></script>
+    <script type="text/javascript" src="${ctx}/common/js/angular/angular.bootstrap.ui.modal.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular.common.js"></script>
         
     <script type="text/javascript">

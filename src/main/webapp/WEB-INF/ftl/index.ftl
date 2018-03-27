@@ -1,6 +1,6 @@
 <#include "/common/ftl/common.ftl"/>
 <@body>
-<nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0px;">
+<nav class="navbar navbar-yellow" role="navigation" style="margin-bottom: 0px;">
 	<div class="navbar-header">
         <a class="navbar-brand"  href="${ctx}/index.shtml">鸡汤店</a>
     </div>
@@ -10,18 +10,13 @@
     </ul>
 </nav>
 
-<style>
-.main{
-    background:url("${ctx}/common/images/warm.png") no-repeat center;
-    background-size: cover;
-}
-</style>
-
-<div class="main" data-ng-app="indexApp" data-ng-controller="indexCtrl">
-       <div ng-repeat="x in menus" style="width:300px;height:160px;aligh:center;">
-       	<img  id="x.sortNo" ng-src="${ctx}/common/images/{{x.menuIcon}}_b.png" class="img-circle" style="width:100px;height:100px">
-           <h3 ng-bind="x.menuName"></h3>
-       </div>
+<div data-ng-app="indexApp" data-ng-controller="indexCtrl" ng-cloak class="index_page">
+    <ul class="index_link">
+        <li ng-repeat="x in menus"><a style="cursor: pointer;" ng-if="x.menuIcon" ng-click="goPage(x)" ng-class="{'link_dis':x.hasAuth === '0'}"><img ng-src="${ctx}/common/images/{{x.menuIcon}}_b.png">
+            <span ng-if="x.showTodo" class="dot"></span>
+            <h3 ng-bind="x.menuName"></h3><i></i></a></li>
+            
+    </ul>
 </div>
 	
 
@@ -34,16 +29,12 @@
 	            	
 	            });
 	            
-	            $swipe.bind($("#123"),{
-	            	'move':function(){
-	            		debugger
-	            		$("#1").css("display","none");
-	            		$timeout(function(){
-	            			$("#2").css("display","block");
-	            		})
-	            	}
-	            });
 	            
+	            $scope.goPage = function (x) {
+	                if(x.hasAuth === '1'){
+	                    window.location.href = "${ctx}/menu_index_" + x.id + ".shtml";
+	                }
+	            };
 	            
 	        }]);
 	    </script>

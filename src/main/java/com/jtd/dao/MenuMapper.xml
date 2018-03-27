@@ -34,4 +34,11 @@
             AND t.MENU_LEVEL = #{1}
        
     </select>
+
+    <select id="getMenusAuthorityByUserId" resultMap="DtoBaseResultMap">
+        SELECT t.* FROM TB_MENU t WHERE 1=1
+        AND t.ID = #{1}
+        AND <include refid="AuthorityByUserId"/>
+        
+    </select>
 </mapper>
