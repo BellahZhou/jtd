@@ -53,8 +53,8 @@
   
 	 <servlet-mapping>  
 	    <servlet-name>springMvc</servlet-name>  
-	    <url-pattern>*.shtml</url-pattern>
 	    <url-pattern>/</url-pattern>
+	    <url-pattern>*.shtml</url-pattern>
 	</servlet-mapping> 
 	
 	

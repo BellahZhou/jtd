@@ -39,7 +39,6 @@
         indexApp.controller("indexCtrl", ['$scope', '$Ajax', function ($scope, $Ajax) {
            
             $Ajax({url: "${ctx}/getMenuTree.do", type: "POST", data: {menuId: '${topMenu.id}'}}).then(function (data) {
-            	debugger
             	var href = data[0].url + "?menuId=" + data[0].id;
                 $scope.iframeSrc = "${ctx}" + href;
             });

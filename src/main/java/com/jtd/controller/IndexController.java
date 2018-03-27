@@ -53,7 +53,7 @@ public class IndexController {
     }
     
     @RequestMapping("/menu_index_{menuId}")
-    public String index(Model model, @PathVariable Long menuId,HttpSession session) throws Exception {
+    public String index(Model model, @PathVariable(value="menuId") Long menuId,HttpSession session) throws Exception {
     	User user = (User)session.getAttribute("user");
         List<MenuDto> menus = menuDao.getMenusAuthorityByUserId(user.getId(), menuId);
         if (menuId == null || menus.size() == 0) {

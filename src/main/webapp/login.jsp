@@ -14,7 +14,7 @@
 	</head>
 <body>
 	<div class="login login_box">
-		<form action="${pageContext.request.contextPath}/user/login" method="post" id="myLoginForm">
+		<form action="${pageContext.request.contextPath}/user/login.do" method="post" id="myLoginForm">
 			<label>账号：</label>
 			<input type="text" id="username" name="username" placeholder="请输入账号" /><br/>
 			<hr class="hr15">

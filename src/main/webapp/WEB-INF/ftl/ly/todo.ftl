@@ -66,13 +66,19 @@
 	    		if(!$scope.item.remark){
 	    			alert("不可以提交哦，请填写好哦");
 	    		}
-	    		debugger
 	    		$Ajax({
-	                    type: "POST",
+	    				
 	                    url: "${ctx}/ly/doSubmit.do",
-	                    data: {ly:$scope.item}
+	                    type: "POST",
+	                    contentType: "application/json",
+                        data: angular.toJson($scope.item)
                 }).then(function (data) {
-                	
+                	if(data==1){
+                		alert("提交成功");
+                	}else{
+                		alert("提交失败");
+                	}
+                	window.location.reload();
                 });
 	    		
 	    	}

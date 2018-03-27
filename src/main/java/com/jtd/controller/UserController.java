@@ -17,8 +17,8 @@ import com.jtd.domain.User;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
-	 @Autowired(required=false)
-	 private UserDao userDao;
+		 @Autowired(required=false)
+		 private UserDao userDao;
 
 	    @RequestMapping("/view")
 	    public String view() {

@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,15 +31,20 @@ public class LyController {
 	}
 	
 	@RequestMapping("/ly/doSubmit")
-	public void doSubmit(HttpSession session,Ly ly){
+	@ResponseBody
+	public int doSubmit(HttpSession session,@RequestBody Ly ly){
 		User user=(User)session.getAttribute("user");
 		ly.setUserId(user.getId());
 		ly.setCreateBy(user.getUsername());
 		ly.setCreateDate(new Date());
 		ly.setUpdateBy(user.getUsername());
 		ly.setUpdateDate(new Date());
-		lyDao.insert(ly);
-		
+		int i=lyDao.insert(ly);
+		if(i==1){
+			return i;
+		}else{
+			return 0;
+		}
 	}
 	
 
