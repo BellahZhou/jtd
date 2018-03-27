@@ -7,4 +7,8 @@
     <select id="getLysByUserId" parameterType="Long" resultType="Ly">
         SELECT * FROM tb_ly WHERE user_id=#{userId}
     </select>
+    
+    <insert  id="insert">
+   		insert  into `tb_ly`(`USER_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) values(#{userId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
+  	</insert>
 </mapper>

@@ -1,6 +1,7 @@
 package com.jtd.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,6 +27,18 @@ public class LyController {
 		List<Ly> lys=new ArrayList<>();
 		lys=lyDao.getLysByUserId(user.getId());
 		return lys;
+	}
+	
+	@RequestMapping("/ly/doSubmit")
+	public void doSubmit(HttpSession session,Ly ly){
+		User user=(User)session.getAttribute("user");
+		ly.setUserId(user.getId());
+		ly.setCreateBy(user.getUsername());
+		ly.setCreateDate(new Date());
+		ly.setUpdateBy(user.getUsername());
+		ly.setUpdateDate(new Date());
+		lyDao.insert(ly);
+		
 	}
 	
 

@@ -6,4 +6,6 @@ import com.jtd.domain.Ly;
 
 public interface LyDao {
 	public abstract List<Ly> getLysByUserId(Long userId);
+
+	public abstract void insert(Ly ly);
 }

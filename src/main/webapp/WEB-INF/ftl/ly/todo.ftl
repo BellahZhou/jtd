@@ -10,7 +10,7 @@
 			        <label for="" class="col-sm-2 control-label">say something:</label>
 
 			        <div class="col-sm-8">
-			            <textarea class="form-control" ng-model="item.other" rows="4"></textarea>
+			            <textarea class="form-control" ng-model="item.remark" rows="4"></textarea>
 			        </div>
 			    </div>
 			     
@@ -61,6 +61,21 @@
 	    	$Ajax({url: "${ctx}/ly.do"}).then(function (data) {
 	    		$scope.dataItems=data;
 	    	});
+	    	
+	    	$scope.doSubmit=function(){
+	    		if(!$scope.item.remark){
+	    			alert("不可以提交哦，请填写好哦");
+	    		}
+	    		debugger
+	    		$Ajax({
+	                    type: "POST",
+	                    url: "${ctx}/ly/doSubmit.do",
+	                    data: {ly:$scope.item}
+                }).then(function (data) {
+                	
+                });
+	    		
+	    	}
 	
 	    }]);
 	</script>
