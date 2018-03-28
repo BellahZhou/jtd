@@ -2,11 +2,11 @@
 <@body>
 	<nav class="navbar navbar-yellow" role="navigation" style="margin-bottom: 0px;">
 		<div class="navbar-header">
-	        <a class="navbar-brand"  href="${ctx}/index.shtml">鸡汤店</a>
+	        <a class="navbar-brand"  href="${ctx}/index.do">鸡汤店</a>
 	    </div>
 	  	<ul class="nav navbar-nav pull-right">
 	        <li><a>欢迎&nbsp;<b style="color: #fff;">${user.username}</b>&nbsp;登录</a></li>
-	        <li><a href="${ctx}/unifiedlogout.shtml"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a></li>
+	        <li><a href="${ctx}/unifiedlogout.do"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a></li>
 	    </ul>
 	</nav>
 	

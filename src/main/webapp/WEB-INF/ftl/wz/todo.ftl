@@ -8,7 +8,7 @@
 				</div>
 				<div class="col-md-9">
 					<h1>The Club of Chicken Soup For The Soul</h1>
-					<h3>Running out of time</h3>
+					<h3>Independent personality</h3>
 				</div>
 			</div>
 			<hr>

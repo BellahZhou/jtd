@@ -31,7 +31,7 @@
 				     
 				     <div class="form-group">
 				    	<label class="col-sm-2 control-label"></label>      	
-				    	<p class="help-block col-sm-8">B.一件关于未来的事：</p>
+				    	<p class="help-block col-sm-8">B.和未来有关的事：</p>
 				     </div>
 				     <div class="form-group">
 				     	<label class="col-sm-2 control-label"></label>      
