@@ -3,9 +3,13 @@ package com.jtd.controller;
 import java.util.Collections;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,19 @@ import com.jtd.dto.MenuDto;
 public class IndexController {
 	@Autowired(required=false)
 	private MenuDao menuDao;
+	
+	@RequestMapping("/index")
+	public String  rebackIndex(){
+		return "index";
+	}
+	
+	@RequestMapping("/unifiedlogout")
+    public void unifiedlogout(HttpServletRequest request, HttpServletResponse response)throws Exception {
+        request.getSession().removeAttribute("user");
+        request.getSession().invalidate();
+        SecurityContextHolder.clearContext();
+        response.sendRedirect("login.jsp");
+    }
     
     @RequestMapping("/getTopMenus")
     @ResponseBody

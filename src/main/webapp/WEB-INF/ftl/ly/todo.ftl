@@ -73,7 +73,6 @@
 	                    contentType: "application/json",
                         data: angular.toJson($scope.item)
                 }).then(function (data) {
-                	debugger
                 	if(data==1){
                 		alert("提交成功");
                 	}else{
