@@ -1,4 +1,9 @@
 <#include "/common/ftl/common.ftl"/>
+<<style>
+#seekBar{
+margin-bottom: 15px;
+}
+</style>
 <@body>
 	<div class="tab_frame_body" data-ng-app="indexApp" data-ng-controller="indexCtrl">
 		<form role="form" name="itemForm" novalidate>
@@ -7,7 +12,7 @@
 			    <div class="panel-field-box form-horizontal">
 			    
 				    <div class="form-group">
-				        <label for="" class="col-sm-2 control-label">一句积极的话:</label>
+				        <label for="" class="col-sm-2 control-label">每天一句积极的话:</label>
 
 				        <div class="col-sm-8">
 				            <input class="form-control" ng-model="item.positiveWords"></textarea>
@@ -80,7 +85,6 @@
 	    		$("#player").vpplayer({
 				    src: "${ctx}/common/audio/"+$scope.music.src,
 				    trackName: "sample audio",
-				    preloadMessage:$scope.music.preloadMessage,
 				    playerColor:$scope.music.playerColor,
 				    view:'minimal',	
 				});
