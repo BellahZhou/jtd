@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/frame3rd/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
 
     <link rel="stylesheet" type="text/css" href="${ctx}/common/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/common/css/bootstrap-theme.css"/>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/vpplayer.css"/>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/common.css"/>
 	<script type="text/javascript" src="${ctx}/common/js/jquery-2.1.1.min.js"></script> 
