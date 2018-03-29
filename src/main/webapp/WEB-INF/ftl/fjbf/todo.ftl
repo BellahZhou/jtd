@@ -1,5 +1,5 @@
 <#include "/common/ftl/common.ftl"/>
-<<style>
+<style>
 #seekBar{
 margin-bottom: 15px;
 }
