@@ -1,4 +1,4 @@
-package com.jtd.domain;
+package com.jtd.entity;
 
 import java.util.Set;
 

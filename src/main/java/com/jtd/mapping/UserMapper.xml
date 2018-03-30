@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtd.dao.IUserDao" >
+  <resultMap id="BaseResultMap" type="com.jtd.entity.User" >
+	    <id column="ID" property="id" jdbcType="INTEGER" />
+	    <result column="USERNAME" property="userName" jdbcType="VARCHAR" />
+	    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+	    <result column="DISABLED" property="disabled" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    	id, username, password, account
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from tb_user
+	    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+	    delete from tb_user
+	    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.jtd.entity.User" >
+	    insert into tb_user (id, username, password,account)
+	    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, #{account,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.jtd.entity.User" >
+    	insert into tb_user
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        id,
+	      </if>
+	      <if test="userName != null" >
+	        username,
+	      </if>
+	      <if test="password != null" >
+	        password,
+	      </if>
+	      <if test="account != null" >
+	        account,
+	      </if>
+	    </trim>
+	    
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        #{id,jdbcType=INTEGER},
+	      </if>
+	      <if test="userName != null" >
+	        #{userName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="password != null" >
+	        #{password,jdbcType=VARCHAR},
+	      </if>
+	      <if test="account != null" >
+	        #{account,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtd.entity.User" >
+	    update tb_user
+	    <set >
+	      <if test="userName != null" >
+	        username = #{userName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="password != null" >
+	        password = #{password,jdbcType=VARCHAR},
+	      </if>
+	      <if test="account != null" >
+	        account = #{account,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.jtd.entity.User" >
+	    update tb_user
+	    set username = #{userName,jdbcType=VARCHAR},
+	      	password = #{password,jdbcType=VARCHAR},
+	      	account = #{account,jdbcType=VARCHAR}
+	    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByUsernamePassword" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from tb_user
+	    where username = #{userName,jdbcType=VARCHAR}
+	      	and password = #{password,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

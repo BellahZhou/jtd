@@ -1,46 +1,47 @@
 package com.jtd.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jtd.dao.UserDao;
-import com.jtd.domain.User;
+import com.jtd.entity.User;
+import com.jtd.service.IUserService;
+
 /**
- * 用户控制器
+ * Created by Bellah on 2018/3/30 0020.
  */
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = {"/","/user"})
 public class UserController {
-		 @Autowired(required=false)
-		 private UserDao userDao;
+	@Resource
+	private IUserService userService;
+	
+    @RequestMapping(value = {"/","/index"},method = RequestMethod.GET)
+    public String index(){
+        System.out.println("主页");
+        return "index";
+    }
 
-	    @RequestMapping("/view")
-	    public String view() {
-	        return "main/login";
-	    }
+    @RequestMapping(value = "/loginPage",method = RequestMethod.GET)
+    public String loginPage(@RequestParam(value = "error", required = false) String error, Model model){
+        System.out.println("登录页");
+        if (error != null) {
+            return "loginFailure";
+        }
+        return "login";
+    }
+    
+	@RequestMapping("/showUser")
+	public String toIndex(HttpServletRequest request,Model model){
+		int userId = Integer.parseInt(request.getParameter("id"));
+		User user = this.userService.getUserById(userId);
+		model.addAttribute("user", user);
+		return "showUser";
+	}
 
-	    @RequestMapping("/indexview")
-	    public String index() {
-	        return "main/index";
-	    }
-
-	    @RequestMapping(value = "/login", method = RequestMethod.POST)
-	    public ModelAndView login(User model, HttpSession session) {
-	        User user = userDao.findByUsername(model.getUsername());
-
-	        if (user == null || !user.getPassword().equals(model.getPassword())) {
-	            return new ModelAndView("redirect:/login.jsp");
-	        } else {
-	            session.setAttribute("user", user);
-	            ModelAndView mav = new ModelAndView();
-	            mav.setViewName("index");
-	            return mav;
-	        }
-	    }
 }

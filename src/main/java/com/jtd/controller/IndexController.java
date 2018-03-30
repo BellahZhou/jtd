@@ -14,13 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.jtd.util.SecurityContextUtil;
 import com.jtd.util.TreeUtil;
 import com.jtd.dao.MenuDao;
-import com.jtd.domain.Menu;
-import com.jtd.domain.User;
 import com.jtd.dto.MenuDto;
+import com.jtd.entity.Menu;
+import com.jtd.entity.User;
 
 /**
  * index¿ØÖÆÆ÷
@@ -30,19 +32,6 @@ public class IndexController {
 	@Autowired(required=false)
 	private MenuDao menuDao;
 	
-	@RequestMapping("/index")
-	public String  rebackIndex(){
-		return "index";
-	}
-	
-	@RequestMapping("/unifiedlogout")
-    public void unifiedlogout(HttpServletRequest request, HttpServletResponse response)throws Exception {
-        request.getSession().removeAttribute("user");
-        request.getSession().invalidate();
-        SecurityContextHolder.clearContext();
-        response.sendRedirect("login.jsp");
-    }
-    
     @RequestMapping("/getTopMenus")
     @ResponseBody
     public List<MenuDto> index(HttpSession session) throws Exception {

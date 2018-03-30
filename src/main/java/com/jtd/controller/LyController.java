@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jtd.dao.LyDao;
-import com.jtd.domain.Ly;
-import com.jtd.domain.User;
+import com.jtd.dao.LyDaoImpl;
+import com.jtd.entity.Ly;
+import com.jtd.entity.User;
 
 @Controller
 public class LyController {
 	@Resource
-	private LyDao lyDao;
+	private LyDaoImpl lyDao;
 	
 	@RequestMapping("/ly")
 	@ResponseBody
