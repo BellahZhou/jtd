@@ -20,8 +20,8 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public List<User> selectByUsernamePassword(String userName, String password) {
-		return this.userDao.selectByUsernamePassword(userName,password);
+	public List<User> selectByUsernamePassword(String username, String password) {
+		return this.userDao.selectByUsernamePassword(username,password);
 	}
 
 }

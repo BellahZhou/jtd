@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jtd.dao.LyDao;
-import com.jtd.dao.LyDaoImpl;
 import com.jtd.entity.Ly;
 import com.jtd.entity.User;
 
 @Controller
 public class LyController {
-	@Resource
+/*	@Resource
 	private LyDaoImpl lyDao;
 	
 	@RequestMapping("/ly")
@@ -46,7 +45,7 @@ public class LyController {
 		}else{
 			return 0;
 		}
-	}
+	}*/
 	
 
 }

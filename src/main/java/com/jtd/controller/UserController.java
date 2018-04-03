@@ -18,7 +18,7 @@ import com.jtd.service.IUserService;
 @Controller
 @RequestMapping(value = {"/","/user"})
 public class UserController {
-	@Resource
+	@Resource(name="userService")
 	private IUserService userService;
 	
     @RequestMapping(value = {"/","/index"},method = RequestMethod.GET)

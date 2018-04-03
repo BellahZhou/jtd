@@ -29,7 +29,7 @@ import com.jtd.entity.User;
  */
 @Controller
 public class IndexController {
-	@Autowired(required=false)
+	/*@Autowired(required=false)
 	private MenuDao menuDao;
 	
     @RequestMapping("/getTopMenus")
@@ -67,5 +67,5 @@ public class IndexController {
         }
         model.addAttribute("topMenu", menus.get(0));
         return "main";
-    }
+    }*/
 }

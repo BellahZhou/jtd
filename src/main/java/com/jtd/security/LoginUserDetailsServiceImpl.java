@@ -4,19 +4,21 @@ import com.jtd.entity.User;
 import com.jtd.security.LoginUserDetailsImpl;
 import com.jtd.security.LoginUserDetailsService;
 import com.jtd.service.IUserService;
+import com.jtd.service.impl.UserServiceImpl;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
-
-public class LoginUserDetailsServiceImpl implements LoginUserDetailsService {
+@Service("LoginUserDetailsServiceImpl")
+public class LoginUserDetailsServiceImpl  implements LoginUserDetailsService {
 	@Resource
 	private IUserService userService;
     /**

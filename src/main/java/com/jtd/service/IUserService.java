@@ -6,5 +6,5 @@ import com.jtd.entity.User;
 
 public interface IUserService {
 	public User getUserById(int userId);
-	public List<User> selectByUsernamePassword(String userName,String password);
+	public List<User> selectByUsernamePassword(String username,String password);
 }

@@ -1,6 +1,9 @@
 package com.jtd.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.jtd.entity.User;
 
 public interface IUserDao {
@@ -17,5 +20,5 @@ public interface IUserDao {
 
     int updateByPrimaryKey(User record);
 
-	List<User> selectByUsernamePassword(String userName, String password);
+	List<User> selectByUsernamePassword(@Param("username")String username,@Param("password") String password);
 }

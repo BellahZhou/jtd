@@ -13,10 +13,7 @@ xmlns:mvc="http://www.springframework.org/schema/mvc"
             > 
             
     <!-- 启动自动扫描 -->
-    <context:component-scan base-package="com.jtd.*" />
-    
-    <!-- 设置使用注解的类所在的jar包 -->
-    <context:component-scan base-package="com.jtd.security"></context:component-scan>
+    <context:component-scan base-package="com.jtd.controller" />
     
     <!-- 注册MVC注解驱动 -->
     <mvc:annotation-driven />

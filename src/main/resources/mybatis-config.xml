@@ -5,6 +5,6 @@
 <configuration>
     <!-- 设置别名 -->
     <typeAliases>
-        <package name="com.jtd.domain" />
+        <package name="com.jtd.entity" />
     </typeAliases>
 </configuration>
