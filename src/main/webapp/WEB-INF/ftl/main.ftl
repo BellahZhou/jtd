@@ -9,7 +9,7 @@
     <ul class="nav navbar-nav pull-right">
         <li><a>Hi,${user.username}</b>&nbsp;</a></li>
         <li><a href="${ctx}/index.do"><span class="glyphicon glyphicon-home"></span> 返回首页</a></li>
-        <li><a href="${ctx}/unifiedlogout.do"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a></li>
+        <li><a href="${ctx}/logout.do"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a></li>
     </ul>
 
 </nav>

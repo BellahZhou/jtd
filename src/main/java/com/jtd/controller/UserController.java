@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jtd.entity.User;
 import com.jtd.service.IUserService;
+import com.jtd.util.SecurityContextUtil;
 
 /**
  * Created by Bellah on 2018/3/30 0020.
@@ -22,8 +23,9 @@ public class UserController {
 	private IUserService userService;
 	
     @RequestMapping(value = {"/","/index"},method = RequestMethod.GET)
-    public String index(){
+    public String index(HttpServletRequest request){
         System.out.println("ึ๗าณ");
+        request.setAttribute("user", SecurityContextUtil.getCurrentUser());
         return "index";
     }
 

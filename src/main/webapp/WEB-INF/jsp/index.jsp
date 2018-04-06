@@ -10,6 +10,9 @@
 <head>
     <title>主页</title>
 </head>
+<script>
+  window.location = "indexIndex.shtml";
+</script>
 <body style="text-align: center;margin-top: 300px;">
     <h4>**您好!您已成功登陆本系统!<a href="${pageContext.request.contextPath}/logout">退出系统</a></h4>
 </body>

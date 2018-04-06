@@ -8,29 +8,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityContextUtil
 {
-  public static com.jtd.entity.User getCurrentUser()
+  public static String getCurrentUser()
   {
     SecurityContext ctx = SecurityContextHolder.getContext();
-    MyUserDetail detail = (MyUserDetail)ctx.getAuthentication().getPrincipal();
-    return detail.getUser();
+    org.springframework.security.core.userdetails.User detail=(org.springframework.security.core.userdetails.User)ctx.getAuthentication().getPrincipal();
+    return detail.getUsername();
   }
+
   
-  public static String getUsername()
-  {
-    com.jtd.entity.User user = getCurrentUser();
-    if (user == null) {
-      return null;
-    }
-    return user.getUsername();
-  }
-  
-  public static Long getUserId(){
-    com.jtd.entity.User user = getCurrentUser();
-    if (user == null) {
-      return null;
-    }
-    return user.getId();
-  }
+
   
   public static class MyUserDetail extends org.springframework.security.core.userdetails.User {
     private com.jtd.entity.User user;

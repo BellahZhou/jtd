@@ -23,23 +23,29 @@ import com.jtd.dao.MenuDao;
 import com.jtd.dto.MenuDto;
 import com.jtd.entity.Menu;
 import com.jtd.entity.User;
+import com.jtd.service.IUserService;
+import com.jtd.service.MenuService;
 
 /**
  * index控制器
  */
 @Controller
 public class IndexController {
-	/*@Autowired(required=false)
-	private MenuDao menuDao;
+	
+	@Autowired
+	private MenuService menuService;
+	@Resource(name="userService")
+	private IUserService userService;
 	
     @RequestMapping("/getTopMenus")
     @ResponseBody
     public List<MenuDto> index(HttpSession session) throws Exception {
-        User user = (User)session.getAttribute("user");
-        if (user == null) {
+        String username = SecurityContextUtil.getCurrentUser();
+        if (username == null||"".equals(username)) {
             return Collections.emptyList();
         }
-        List<MenuDto> allTopMenus = menuDao.getMenusByUserId(user.getId(), 1);
+        User user=userService.findByUsername(username);
+        List<MenuDto> allTopMenus = menuService.getMenusByUserId(user.getId(), 1);
         return allTopMenus;
     }
     @RequestMapping("/{type}/todo")
@@ -52,20 +58,29 @@ public class IndexController {
     @RequestMapping("/getMenuTree")
     @ResponseBody
     public List<MenuDto> getMenuTree(Long menuId,HttpSession session) {
-    	User user = (User)session.getAttribute("user");
-        List<MenuDto> menus = menuDao.getMenusAuthorityByUserId(user.getId(), menuId);
+    	User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
+        List<MenuDto> menus = menuService.getMenusAuthorityByUserId(user.getId(), menuId);
         
         return TreeUtil.getChildTreeObjects(menus);
     }
     
     @RequestMapping("/menu_index_{menuId}")
     public String index(Model model, @PathVariable(value="menuId") Long menuId,HttpSession session) throws Exception {
-    	User user = (User)session.getAttribute("user");
-        List<MenuDto> menus = menuDao.getMenusAuthorityByUserId(user.getId(), menuId);
+    	 User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
+        List<MenuDto> menus = menuService.getMenusAuthorityByUserId(user.getId(), menuId);
         if (menuId == null || menus.size() == 0) {
             throw new Exception("无效的菜单id: " + menuId);
         }
+        model.addAttribute("user", user);
         model.addAttribute("topMenu", menus.get(0));
         return "main";
-    }*/
+    }
+    
+    @RequestMapping({"/logout"})
+    public String unifiedlogout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      request.getSession().removeAttribute("user");
+      request.getSession().invalidate();
+      SecurityContextHolder.clearContext();
+      return "login";
+    }
 }

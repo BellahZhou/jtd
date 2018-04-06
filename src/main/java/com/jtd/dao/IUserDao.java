@@ -19,6 +19,8 @@ public interface IUserDao {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    User findByUsername(@Param("username")String username);
 
 	List<User> selectByUsernamePassword(@Param("username")String username,@Param("password") String password);
 }
