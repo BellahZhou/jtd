@@ -29,7 +29,6 @@
         
     <script type="text/javascript">
         var contextPath = "${ctx}";
-        debugger
         $.extend(Array.prototype, {
             clone: function () {
                 if (this.length === 1) {

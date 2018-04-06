@@ -17,6 +17,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 @Service("LoginUserDetailsServiceImpl")
 public class LoginUserDetailsServiceImpl  implements LoginUserDetailsService {
 	@Resource
@@ -46,7 +48,6 @@ public class LoginUserDetailsServiceImpl  implements LoginUserDetailsService {
          * 此处应该在数据库获取用户信息进行验证
          */
     	List<User> users=userService.selectByUsernamePassword(username, password);
-    			
     	if(users.size()>0){
     		return true;
     	}

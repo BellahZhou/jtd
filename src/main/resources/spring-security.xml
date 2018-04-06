@@ -13,6 +13,9 @@
     <security:http pattern="/user/loginPage" security="none" />
 
     <security:http auto-config="true" use-expressions="true">
+	    <security:headers>
+		   <security:frame-options policy="SAMEORIGIN"/>
+		</security:headers>
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
         <security:form-login  login-page="/user/loginPage" authentication-failure-url="/user/loginPage?error=error" default-target-url="/user/index" login-processing-url="/login"/>
         <security:logout invalidate-session="true" logout-success-url="/user/loginPage" logout-url="/logout"/>

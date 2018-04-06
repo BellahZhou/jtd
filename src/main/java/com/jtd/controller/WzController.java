@@ -24,7 +24,7 @@ public class WzController {
 		String[] names=files.split(",");
 		List<String> list=new ArrayList<>();
 		for (String string : names) {
-			File file = new File("D:/Install/wz/"+string);
+			File file = new File("E:/20180406_file/wz/"+string);
 			if(!file.exists()){
 				continue;
 			}
