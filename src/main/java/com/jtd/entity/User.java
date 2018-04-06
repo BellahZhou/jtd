@@ -31,9 +31,6 @@ public class User {
     @Transient
     private Set<Role> roles;  
       
-    @Transient
-    private Map<String, List<Resource>> roleResources;  
-      
     /** 
      * The default constructor 
      */  
@@ -138,8 +135,4 @@ public class User {
         this.account = account;  
     }  
   
-    public void setRoleResources(Map<String, List<Resource>> roleResources) {  
-        this.roleResources = roleResources;  
-    }  
-      
 }  

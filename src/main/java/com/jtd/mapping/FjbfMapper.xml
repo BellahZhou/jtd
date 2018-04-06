@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtd.dao.FjbfMapper" >
+  <resultMap id="BaseResultMap" type="com.jtd.entity.Fjbf" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="POSITIVE_WORDS" property="positiveWords" jdbcType="VARCHAR" />
+    <result column="NOTHING_THE_MATTER" property="nothingTheMatter" jdbcType="VARCHAR" />
+    <result column="ABOUT_FUTURE" property="aboutFuture" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_THINGS" property="importantThings" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, POSITIVE_WORDS, NOTHING_THE_MATTER, ABOUT_FUTURE, IMPORTANT_THINGS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_fjbf
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_fjbf
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtd.entity.Fjbf" >
+    insert into tb_fjbf (ID, USER_ID, POSITIVE_WORDS, 
+      NOTHING_THE_MATTER, ABOUT_FUTURE, IMPORTANT_THINGS
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{positiveWords,jdbcType=VARCHAR}, 
+      #{nothingTheMatter,jdbcType=VARCHAR}, #{aboutFuture,jdbcType=VARCHAR}, #{importantThings,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtd.entity.Fjbf" >
+    insert into tb_fjbf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="positiveWords != null" >
+        POSITIVE_WORDS,
+      </if>
+      <if test="nothingTheMatter != null" >
+        NOTHING_THE_MATTER,
+      </if>
+      <if test="aboutFuture != null" >
+        ABOUT_FUTURE,
+      </if>
+      <if test="importantThings != null" >
+        IMPORTANT_THINGS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="positiveWords != null" >
+        #{positiveWords,jdbcType=VARCHAR},
+      </if>
+      <if test="nothingTheMatter != null" >
+        #{nothingTheMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="aboutFuture != null" >
+        #{aboutFuture,jdbcType=VARCHAR},
+      </if>
+      <if test="importantThings != null" >
+        #{importantThings,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtd.entity.Fjbf" >
+    update tb_fjbf
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="positiveWords != null" >
+        POSITIVE_WORDS = #{positiveWords,jdbcType=VARCHAR},
+      </if>
+      <if test="nothingTheMatter != null" >
+        NOTHING_THE_MATTER = #{nothingTheMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="aboutFuture != null" >
+        ABOUT_FUTURE = #{aboutFuture,jdbcType=VARCHAR},
+      </if>
+      <if test="importantThings != null" >
+        IMPORTANT_THINGS = #{importantThings,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtd.entity.Fjbf" >
+    update tb_fjbf
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      POSITIVE_WORDS = #{positiveWords,jdbcType=VARCHAR},
+      NOTHING_THE_MATTER = #{nothingTheMatter,jdbcType=VARCHAR},
+      ABOUT_FUTURE = #{aboutFuture,jdbcType=VARCHAR},
+      IMPORTANT_THINGS = #{importantThings,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

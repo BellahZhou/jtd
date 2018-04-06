@@ -3,16 +3,32 @@ package com.jtd.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jtd.entity.Fjbf;
+import com.jtd.entity.Ly;
+import com.jtd.entity.User;
+import com.jtd.service.FjbfService;
+import com.jtd.service.IUserService;
 import com.jtd.util.PropertiesUtil;
+import com.jtd.util.SecurityContextUtil;
 
 @Controller
+@RequestMapping({"/fjbf"})
 public class FjbfController {
+	@Autowired
+	private FjbfService fjbfService;
+	@Resource(name="userService")
+	private IUserService userService;
 	
-	@RequestMapping("/fjbf")
+	@RequestMapping("/music")
 	@ResponseBody
 	public Map<String, Object> getMusic(){
 		Map<String, Object> map=new HashMap<>();
@@ -24,6 +40,15 @@ public class FjbfController {
 		map.put("playerColor", playerColor);
 		return map;
 		
+	}
+	
+	@RequestMapping({"/save"})
+	@ResponseBody
+	public int save(@RequestBody Fjbf fjbf){
+		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
+		fjbf.setUserId(user.getId());
+		int i=fjbfService.insert(fjbf);
+		return i;
 	}
 
 }

@@ -15,7 +15,7 @@ margin-bottom: 15px;
 				        <label for="" class="col-sm-2 control-label">每天一句积极的话:</label>
 
 				        <div class="col-sm-8">
-				            <input class="form-control" ng-model="item.positiveWords"></textarea>
+				            <input class="form-control" ng-model="fjbf.positiveWords"></textarea>
 				        </div>
 				    </div>
 				    <div class="form-group">    
@@ -29,9 +29,9 @@ margin-bottom: 15px;
 				     <div class="form-group">
 				     	<label class="col-sm-2 control-label"></label>      
 				        <div class="col-sm-8">
-				            <textarea ng-disabled="item.nothingTheMatterDot" class="form-control" ng-model="item.nothingTheMatter" rows="4"></textarea>
+				            <textarea ng-disabled="nothingTheMatterDot" class="form-control" ng-model="fjbf.nothingTheMatter" rows="4"></textarea>
 				        </div>
-				        <input type="checkbox" ng-model="item.nothingTheMatterDot">(可以用“✓”代替)
+				        <input type="checkbox" ng-model="nothingTheMatterDot">(可以用“✓”代替)
 				     </div>
 				     
 				     <div class="form-group">
@@ -41,9 +41,9 @@ margin-bottom: 15px;
 				     <div class="form-group">
 				     	<label class="col-sm-2 control-label"></label>      
 				        <div class="col-sm-8">
-				            <textarea ng-disabled="item.aboutFutureDot" class="form-control" ng-model="item.aboutFuture" rows="4"></textarea>
+				            <textarea ng-disabled="aboutFutureDot" class="form-control" ng-model="fjbf.aboutFuture" rows="4"></textarea>
 				        </div>
-				        <input type="checkbox" ng-model="item.aboutFutureDot">(可以用“✓”代替)
+				        <input type="checkbox" ng-model="aboutFutureDot">(可以用“✓”代替)
 				     </div>
 				     
 				     <div class="form-group">
@@ -53,12 +53,20 @@ margin-bottom: 15px;
 				     <div class="form-group">
 				     	<label class="col-sm-2 control-label"></label>      
 				        <div class="col-sm-8">
-				            <textarea ng-disabled="item.importantThingsDot" class="form-control" ng-model="item.importantThings" rows="4"></textarea>
+				            <textarea ng-disabled="importantThingsDot" class="form-control" ng-model="fjbf.importantThings" rows="4"></textarea>
 				        </div>
-				        <input type="checkbox" ng-model="item.importantThingsDot">(可以用“✓”代替)
+				        <input type="checkbox" ng-model="importantThingsDot">(可以用“✓”代替)
 				     </div>
-				     
-				     <div class="form-group">
+					
+			     </div>
+			     <div class="btm-bar" >
+				  	 <button class="btn btn-success" ng-click="doSubmit()">提交</button>
+		       		 <a class="btn btn-success" ng-click="back()">返回</a>
+				 </div>
+			</fieldset>
+			<fieldset class="panel-field"> 
+				<div class="panel-field-box form-horizontal">    
+	  				<div class="form-group">
 				        <label for="" class="col-sm-2 control-label">送你一首歌:</label>
 				        <div class="col-sm-8"></div>
 				    </div>
@@ -67,11 +75,10 @@ margin-bottom: 15px;
 				        <div class="col-sm-8" id="player">
 				        </div>
 				    </div>
-			     </div>
-			</fieldset>     
-	  		
+			    </div>
+			</fieldset> 
 	    </form>
-		
+		 
 	</div>
 
 
@@ -80,7 +87,7 @@ margin-bottom: 15px;
 	<script type="text/javascript">
 	    var indexApp = angular.module("indexApp", ["commApp"]);
 	    indexApp.controller("indexCtrl", ['$scope','$Ajax',function ($scope,$Ajax) {
-	    	$Ajax({url: "${ctx}/fjbf.do"}).then(function (data) {
+	    	$Ajax({url: "${ctx}/fjbf/music.do"}).then(function (data) {
 	    		$scope.music=data;
 	    		$("#player").vpplayer({
 				    src: "${ctx}/common/audio/"+$scope.music.src,
@@ -90,6 +97,31 @@ margin-bottom: 15px;
 				});
 	    	});
 	    	
+	    	
+	    	$scope.doSubmit=function(){
+	    		/* if(!$scope.fjbf.remark){
+	    			alert("不可以提交哦，请填写好哦");
+	    		} */
+	    		debugger
+	    		$Ajax({
+	                    url: "${ctx}/fjbf/save.do",
+	                    type: "POST",
+	                    contentType: "application/json",
+                        data: angular.toJson($scope.fjbf)
+                }).then(function (data) {
+                	if(data==1){
+                		alert("提交成功");
+                	}else{
+                		alert("提交失败");
+                	}
+                	window.location.reload();
+                });
+	    		
+	    	}
+	    	
+	    	$scope.back = function () {
+                window.history.go(-1);
+            };
 	    	
 	    	
 	    }]);
