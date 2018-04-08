@@ -8,9 +8,14 @@
     <result column="NOTHING_THE_MATTER" property="nothingTheMatter" jdbcType="VARCHAR" />
     <result column="ABOUT_FUTURE" property="aboutFuture" jdbcType="VARCHAR" />
     <result column="IMPORTANT_THINGS" property="importantThings" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP"/>
+    
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, USER_ID, POSITIVE_WORDS, NOTHING_THE_MATTER, ABOUT_FUTURE, IMPORTANT_THINGS
+    ID, USER_ID, POSITIVE_WORDS, NOTHING_THE_MATTER, ABOUT_FUTURE, IMPORTANT_THINGS,CREATE_BY,CREATE_DATE,UPDATE_BY,UPDATE_DATE
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -103,4 +108,16 @@
       IMPORTANT_THINGS = #{importantThings,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectTodayPlan" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_fjbf tf
+    where 1=1
+		AND to_days(tf.create_date) = to_days(now())
+    <if test="userId != null" >
+        AND tf.USER_ID = #{userId,jdbcType=BIGINT}
+    </if>
+	
+  </select>
 </mapper>

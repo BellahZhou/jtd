@@ -1,5 +1,6 @@
 package com.jtd.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +39,10 @@ public class FjbfController {
 		map.put("src", src);
 		map.put("preloadMessage", preloadMessage);
 		map.put("playerColor", playerColor);
+		
+		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
+		Fjbf todayPlan=fjbfService.selectTodayPlan(user.getId());
+		map.put("todayPlan", todayPlan);
 		return map;
 		
 	}

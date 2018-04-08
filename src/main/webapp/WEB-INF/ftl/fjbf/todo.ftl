@@ -15,9 +15,9 @@ margin-bottom: 15px;
 				        <label for="" class="col-sm-2 control-label"><span class="c_red">*</span>每天一句积极的话:</label>
 
 				        <div class="col-sm-8">
-				            <input class="form-control" ng-model="fjbf.positiveWords" name="positiveWords" required/>
-				            <div class="errow_text" ng-messages="itemForm.positiveWords.$error"
-                                 ng-if="itemForm.positiveWords.$touched && itemForm.positiveWords.$invalid">
+				            <input class="form-control" ng-model="fjbf.positiveWords" required/>
+				            <div class="errow_text" ng-messages="itemForm.fjbf.positiveWords.$error"
+                                 ng-if="itemForm.fjbf.positiveWords.$touched && itemForm.fjbf.positiveWords.$invalid">
                                 <div ng-message="required"><i></i>positive words 不可为空哦</div>
                             </div>
 				        </div>
@@ -100,6 +100,8 @@ margin-bottom: 15px;
 				    playerColor:$scope.music.playerColor,
 				    view:'minimal',	
 				});
+	    		$scope.fjbf=data.todayPlan;
+	    		
 	    	});
 	    	
 	    	

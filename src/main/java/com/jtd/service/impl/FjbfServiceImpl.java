@@ -14,5 +14,9 @@ public class FjbfServiceImpl implements FjbfService{
 	public int insert(Fjbf record) {
 		return fjbfDao.insert(record);
 	}
+	@Override
+	public Fjbf selectTodayPlan(Long userId) {
+		return fjbfDao.selectTodayPlan(userId);
+	}
 
 }

@@ -1,5 +1,7 @@
 package com.jtd.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jtd.entity.Fjbf;
 
 public interface FjbfMapper {
@@ -14,4 +16,6 @@ public interface FjbfMapper {
     int updateByPrimaryKeySelective(Fjbf record);
 
     int updateByPrimaryKey(Fjbf record);
+
+	Fjbf selectTodayPlan(@Param("userId") Long id);
 }

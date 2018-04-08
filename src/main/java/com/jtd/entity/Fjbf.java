@@ -1,6 +1,6 @@
 package com.jtd.entity;
 
-public class Fjbf {
+public class Fjbf extends IDE{
     private Long id;
 
     private Long userId;
