@@ -68,6 +68,10 @@ public class UserController {
       user.setPassword(password);
       user.setDisabled(true);
       user.setAccount(username);
+      user.setCreateBy(username);
+      user.setCreateDate(new Date());
+      user.setUpdateBy(username);
+      user.setUpdateDate(new Date());
       long timeID = Long.parseLong(new SimpleDateFormat("yyyyMMddHHmmssSSSSS").format(new Date()));
       int a = this.userService.insertUser(user);
       if (a == 1){

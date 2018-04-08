@@ -15,6 +15,10 @@
         <result column="SORT_NO" property="sortNo" jdbcType="DECIMAL"/>
         <result column="URL" property="url" jdbcType="VARCHAR"/>
         <result column="CAN_DELETE" property="canDelete" jdbcType="CHAR"/>
+        <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+	    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+	    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+	    <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
     </resultMap>
 
 	<resultMap id="DtoBaseResultMap" type="com.jtd.dto.MenuDto" extends="BaseResultMap">

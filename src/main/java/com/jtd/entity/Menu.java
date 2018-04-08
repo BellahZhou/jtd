@@ -6,7 +6,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table(name = "TB_MENU")
-public class Menu {
+public class Menu extends IDE{
 	
 	private static final long serialVersionUID = 8026813053768023527L;
     @Id

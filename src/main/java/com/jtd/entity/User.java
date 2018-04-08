@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
   
 @Table(name = "TB_USER")   
-public class User {  
+public class User extends IDE{  
       
     private static final long serialVersionUID = 8026813053768023527L;  
     @Id
