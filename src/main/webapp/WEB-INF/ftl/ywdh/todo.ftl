@@ -8,15 +8,15 @@
 			    
 				    <div class="form-group">
 				        <label class="col-sm-3 control-label">我的电话：</label>
-				        <p class="help-block col-sm-3">18217702806</p>
+				        <p class="help-block col-sm-3">{{my.phone}}</p>
 				    </div>
 				    <div class="form-group">    
 				        <label class="col-sm-3 control-label">我的EMAIL：</label>
-				        <p class="help-block col-sm-3">18351886003@163.com</p>
+				        <p class="help-block col-sm-3">{{my.email}}</p>
 				    </div>
 				    <div class="form-group">      	
 				      	<label class="col-sm-3 control-label">你也可以给我写信：</label>
-				    	<p class="help-block col-sm-8">上海市徐汇区桂平路481号20号楼6层（万达信息）</p>
+				    	<p class="help-block col-sm-8">{{my.address}}</p>
 				     </div>
 				     
 			     </div>
@@ -32,7 +32,9 @@
 	<script type="text/javascript">
 	    var indexApp = angular.module("indexApp", ["commApp"]);
 	    indexApp.controller("indexCtrl", ['$scope','$Ajax',function ($scope,$Ajax) {
-	
+	    	$Ajax({url: "${ctx}/ywdh/list.do"}).then(function (data) {
+	    		$scope.my=data;
+	    	});
 	    }]);
 	</script>
 	</@javascript>

@@ -54,6 +54,12 @@ public class IndexController {
     	return "/"+menuType+"/todo";
     }
     
+    @RequestMapping("/{type}/{detail}")
+    public String htmlJump(@PathVariable(value="type") String menuType,@PathVariable(value="detail") String detail){
+    	
+    	return "/"+menuType+"/"+detail;
+    }
+    
     
     @RequestMapping("/getMenuTree")
     @ResponseBody

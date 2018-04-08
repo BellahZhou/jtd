@@ -29,17 +29,17 @@
 				<div class="col-md-4">
 					<img src="${ctx}/common/images/bottom1.png">
 					<h2>applify</h2>
-					<a href="https://github.com/udacity/applify">https://github.com/udacity/applify</a>
+					<a href="http://baidu.com">https://github.com/udacity/applify</a>
 				</div>
 				<div class="col-md-4">
 					<img src="${ctx}/common/images/bottom2.png">
 					<h2>sunflower</h2>
-					<a href="https://github.com/udacity/sunflower">https://github.com/udacity/sunflower</a>
+					<a href="http://baidu.com">https://github.com/udacity/sunflower</a>
 				</div>
 				<div class="col-md-4">
 					<img src="${ctx}/common/images/bottom3.png">
 					<h2>bokeh</h2>
-					<a href="https://github.com/udacity/bokeh">https://github.com/udacity/bokeh</a>
+					<a href="http://baidu.com">https://github.com/udacity/bokeh</a>
 				</div>
 			</div>
 		</div>

@@ -21,13 +21,14 @@ import com.jtd.service.LyService;
 import com.jtd.util.SecurityContextUtil;
 
 @Controller
+@RequestMapping("/ly")
 public class LyController {
 	@Autowired
 	private LyService lyService;
 	@Resource(name="userService")
 	private IUserService userService;
 	
-	@RequestMapping("/ly")
+	@RequestMapping("/myLyDetail")
 	@ResponseBody
 	public List<Ly> getLy(HttpSession session) throws Exception{
 		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
@@ -36,7 +37,8 @@ public class LyController {
 		return lys;
 	}
 	
-	@RequestMapping("/ly/doSubmit")
+	
+	@RequestMapping("/myLy/doSubmit")
 	@ResponseBody
 	public int doSubmit(HttpSession session,@RequestBody Ly ly){
 		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
