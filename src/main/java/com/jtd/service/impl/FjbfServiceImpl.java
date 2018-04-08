@@ -18,5 +18,9 @@ public class FjbfServiceImpl implements FjbfService{
 	public Fjbf selectTodayPlan(Long userId) {
 		return fjbfDao.selectTodayPlan(userId);
 	}
+	@Override
+	public int updateByPrimaryKey(Fjbf fjbf) {
+		return fjbfDao.updateByPrimaryKey(fjbf);
+	}
 
 }

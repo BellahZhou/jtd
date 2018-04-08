@@ -64,7 +64,7 @@ margin-bottom: 15px;
 					
 			     </div>
 			     <div class="btm-bar" >
-				  	 <button class="btn btn-success" ng-disabled="itemForm.$invalid" ng-click="doSubmit()">提交</button>
+				  	 <button class="btn btn-success" ng-disabled="itemForm.$invalid" ng-click="doSubmit()">保存</button>
 		       		 <a class="btn btn-success" ng-click="back()">返回</a>
 		       		 <a class="btn btn-success" ng-click="song()">送你一首歌</a>
 				 </div>

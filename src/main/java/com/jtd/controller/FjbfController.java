@@ -51,9 +51,20 @@ public class FjbfController {
 	@ResponseBody
 	public int save(@RequestBody Fjbf fjbf){
 		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
-		fjbf.setUserId(user.getId());
-		int i=fjbfService.insert(fjbf);
-		return i;
+		Fjbf todayPlan=fjbfService.selectTodayPlan(user.getId());
+		if(todayPlan!=null){
+			fjbf.setId(todayPlan.getId());
+			fjbf.setUpdateBy(SecurityContextUtil.getCurrentUser());
+			fjbf.setUpdateDate(new Date());
+			return fjbfService.updateByPrimaryKey(fjbf);
+		}else{
+			fjbf.setUserId(user.getId());
+			fjbf.setCreateBy(SecurityContextUtil.getCurrentUser());
+			fjbf.setCreateDate(new Date());
+			fjbf.setUpdateBy(SecurityContextUtil.getCurrentUser());
+			fjbf.setUpdateDate(new Date());
+			return fjbfService.insert(fjbf);
+		}
 	}
 
 }
