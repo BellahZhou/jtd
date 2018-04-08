@@ -80,7 +80,6 @@ public class IndexController {
     public String unifiedlogout(HttpServletRequest request, HttpServletResponse response) throws Exception {
       request.getSession().removeAttribute("user");
       request.getSession().invalidate();
-      SecurityContextHolder.clearContext();
       return "login";
     }
 }

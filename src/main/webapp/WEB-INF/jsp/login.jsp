@@ -19,4 +19,7 @@
         <input type="submit" value="登录" name="submit">
     </div>
 </form>
+	<div>
+		<a href="${pageContext.request.contextPath}/user/register.do">注册</a>
+	</div>
 </bod

@@ -1,6 +1,11 @@
 package com.jtd.controller;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +43,43 @@ public class UserController {
         }
         return "login";
     }
+    
+    @RequestMapping(value = "/register")
+    public String register() {
+        System.out.println("×¢²áÒ³");
+        return "register";
+    }
+    
+    @RequestMapping(value={"/register"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
+    public String userRegister(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException
+    {
+      String username = request.getParameter("username");
+      User user = this.userService.findByUsername(username);
+      if (user != null)
+      {
+        request.setAttribute("msg", "ÓÃ»§ÒÑ´æÔÚ");
+        return "register";
+      }
+      String password = request.getParameter("password");
+//      String YZMD5PSD = PasswordUtil.getYZMD5PSD(username, password);
+      user = new User();
+      user.setUsername(username);
+      user.setPassword(password);
+      user.setDisabled(true);
+      user.setAccount(username);
+      long timeID = Long.parseLong(new SimpleDateFormat("yyyyMMddHHmmssSSSSS").format(new Date()));
+      int a = this.userService.insertUser(user);
+      if (a == 1){
+        request.setAttribute("msg", "×¢²á³É¹¦");
+        request.setAttribute("username", username);
+        return "login";
+      }
+      request.setAttribute("msg", "×¢²áÊ§°Ü");
+      return "register";
+      
+    }
+  
     
 	@RequestMapping("/showUser")
 	public String toIndex(HttpServletRequest request,Model model){
