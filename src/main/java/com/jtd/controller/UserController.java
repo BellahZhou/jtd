@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jtd.entity.User;
+import com.jtd.entity.UserRole;
 import com.jtd.service.IUserService;
+import com.jtd.service.UserRoleService;
 import com.jtd.util.SecurityContextUtil;
 
 /**
@@ -27,6 +30,8 @@ import com.jtd.util.SecurityContextUtil;
 public class UserController {
 	@Resource(name="userService")
 	private IUserService userService;
+	@Autowired
+	private UserRoleService userRoleService;
 	
     @RequestMapping(value = {"/","/index"},method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response){
@@ -74,7 +79,17 @@ public class UserController {
       user.setUpdateDate(new Date());
       long timeID = Long.parseLong(new SimpleDateFormat("yyyyMMddHHmmssSSSSS").format(new Date()));
       int a = this.userService.insertUser(user);
-      if (a == 1){
+      
+      UserRole ur=new UserRole();
+      ur.setUserId(user.getId());
+      ur.setRoleId((long) 2);
+      ur.setCreateBy("admin");
+      ur.setCreateDate(new Date());
+      ur.setUpdateBy("admin");
+      ur.setUpdateDate(new Date());
+      int b=userRoleService.insert(ur);
+      
+      if (a == 1&&b == 1){
         request.setAttribute("msg", "×¢²á³É¹¦");
         request.setAttribute("username", username);
         return "login";
