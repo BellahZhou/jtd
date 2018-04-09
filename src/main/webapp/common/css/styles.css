@@ -1,0 +1,31 @@
+*{
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Î¢ÈíÑÅºÚ,Tahoma,Arial,sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -box-sizing: border-box;
+    padding:0;
+    margin:0;
+    list-style:none;
+    box-sizing: border-box;
+}
+
+body,html{
+    height:100%;
+    overflow:hidden;
+}
+body{
+    background:url(../images/logo.png) no-repeat center;
+    background-size: cover;
+}
+
+.login{
+    height: 280px;
+    width: 350px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-sizing: border-box;
+	  position: absolute; 
+	  left: 50%; top: 50%;    
+	  transform: translate(-50%, -50%);
+}
