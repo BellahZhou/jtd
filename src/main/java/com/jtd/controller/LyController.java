@@ -38,7 +38,7 @@ public class LyController {
 	}
 	
 	
-	@RequestMapping("/myLy/doSubmit")
+	@RequestMapping("/doSubmit")
 	@ResponseBody
 	public int doSubmit(HttpSession session,@RequestBody Ly ly){
 		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());

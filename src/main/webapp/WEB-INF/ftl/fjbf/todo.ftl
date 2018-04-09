@@ -124,7 +124,7 @@ margin-bottom: 15px;
 	    	}
 	    	
 	    	$scope.song=function(){
-	    		if(!$scope.fjbf.positiveWords||!$scope.fjbf.nothingTheMatter
+	    		if(($scope.fjbf==null)||!$scope.fjbf.positiveWords||!$scope.fjbf.nothingTheMatter
 	    			||!$scope.fjbf.aboutFuture||!$scope.fjbf.importantThings){
 	    			alert("只有完成所有的事情才可以听歌哦");
 	    			return;
