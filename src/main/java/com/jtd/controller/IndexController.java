@@ -1,7 +1,10 @@
 package com.jtd.controller;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,7 +48,9 @@ public class IndexController {
             return Collections.emptyList();
         }
         User user=userService.findByUsername(username);
-        List<MenuDto> allTopMenus = menuService.getMenusByUserId(user.getId(), 1);
+        Menu menu = new Menu();
+        menu.setMenuLevel(Integer.valueOf(1));
+        List<MenuDto> allTopMenus = menuService.getMenusByUserId(user.getId(), menu);
         return allTopMenus;
     }
     @RequestMapping("/{type}/todo")
@@ -64,8 +69,14 @@ public class IndexController {
     @RequestMapping("/getMenuTree")
     @ResponseBody
     public List<MenuDto> getMenuTree(Long menuId,HttpSession session) {
+    	 Menu menu = (Menu)this.menuService.selectByPrimaryKey(menuId);
     	User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
-        List<MenuDto> menus = menuService.getMenusAuthorityByUserId(user.getId(), menuId);
+    	Menu query = new Menu();
+        query.setMenuSeq(menu.getMenuSeq());
+        Map<String, Object> map=new HashMap<String, Object>();
+        map.put("userId", user.getId());
+        map.put("menu", query);
+        List<MenuDto> menus = menuService.getMenusAuthorityByUserId(map);
         
         return TreeUtil.getChildTreeObjects(menus);
     }
@@ -73,7 +84,12 @@ public class IndexController {
     @RequestMapping("/menu_index_{menuId}")
     public String index(Model model, @PathVariable(value="menuId") Long menuId,HttpSession session) throws Exception {
     	 User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
-        List<MenuDto> menus = menuService.getMenusAuthorityByUserId(user.getId(), menuId);
+    	 Menu menu = new Menu();
+    	 menu.setId(menuId);
+    	 Map<String, Object> map=new HashMap<String, Object>();
+         map.put("userId", user.getId());
+         map.put("menu", menu);
+        List<MenuDto> menus = menuService.getMenusAuthorityByUserId(map);
         if (menuId == null || menus.size() == 0) {
             throw new Exception("无效的菜单id: " + menuId);
         }

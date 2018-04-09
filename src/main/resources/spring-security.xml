@@ -10,6 +10,8 @@
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--需要过滤不被拦截的请求-->
+    
+    <security:http pattern="/common/**" security="none" />
     <security:http pattern="/user/register" security="none" />
     <security:http pattern="/user/loginPage" security="none" />
 

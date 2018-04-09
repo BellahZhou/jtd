@@ -25,24 +25,65 @@
         <result column="ROLE_ID" property="roleId" jdbcType="DECIMAL"/>
         <result column="HAS_AUTH" property="hasAuth" jdbcType="VARCHAR"/>
     </resultMap>
+    
+	<sql id="Base_Column_List" >
+	    ID, MENU_NAME, MENU_CODE, MENU_DESC, MENU_SEQ, IS_LEAF, MENU_LEVEL, PARENT_MENU_ID, 
+	    SORT_NO, URL, MENU_ICON, CAN_DELETE, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE
+	</sql>
+	  
+	  
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from tb_menu
+	    where ID = #{id,jdbcType=BIGINT}
+	  </select>
 
 	<sql id="AuthorityByUserId">
         EXISTS (SELECT 'x' FROM TB_USER_ROLE ur , TB_ROLE_MENU rm WHERE
-        ur.ROLE_ID = rm.ROLE_ID AND rm.MENU_ID = t.ID AND ur.USER_ID = #{0})
+        ur.ROLE_ID = rm.ROLE_ID AND rm.MENU_ID = t.ID AND ur.USER_ID = #{userId})
     </sql>
 
     <select id="getMenusByUserId" resultMap="DtoBaseResultMap">
         SELECT t.*,
         CASE WHEN <include refid="AuthorityByUserId"/> THEN '1' ELSE '0' END HAS_AUTH 
         FROM TB_MENU t WHERE 1=1
-            AND t.MENU_LEVEL = #{1}
+        <if test="menu.menuLevel != null">
+            AND t.MENU_LEVEL = #{menu.menuLevel}
+        </if>
+        <if test="menu.id != null">
+            AND t.ID = #{menu.id}
+        </if>
+        <if test="menu.menuSeq != null and menu.menuSeq != ''">
+            AND t.MENU_SEQ like concat(#{menu.menuSeq} ,'%')
+        </if>
+        <if test="menu.id == null">
+            ORDER BY
+            <if test="menu.menuLevel == null">
+                t.MENU_LEVEL,
+            </if>t.SORT_NO
+        </if>
        
     </select>
 
-    <select id="getMenusAuthorityByUserId" resultMap="DtoBaseResultMap">
+   
+    <select id="getMenusAuthorityByUserId"  parameterType="java.util.HashMap"  resultMap="DtoBaseResultMap">
         SELECT t.* FROM TB_MENU t WHERE 1=1
-        AND t.ID = #{1}
+        <if test="menu.menuLevel != null">
+            AND t.MENU_LEVEL = #{menu.menuLevel}
+        </if>
+        <if test="menu.id != null">
+            AND t.ID = #{menu.id}
+        </if>
+        <if test="menu.menuSeq != null and menu.menuSeq != ''">
+            AND t.MENU_SEQ like concat(#{menu.menuSeq} ,'%')
+        </if>
         AND <include refid="AuthorityByUserId"/>
-        
+        <if test="menu.id == null">
+            ORDER BY
+            <if test="menu.menuLevel == null">
+                t.MENU_LEVEL,
+            </if>t.SORT_NO
+        </if>
     </select>
 </mapper>
