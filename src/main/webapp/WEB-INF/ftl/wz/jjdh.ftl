@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<!-- <img src="http://placehold.it/950x350"> -->
-					<p>主体</p>
+					<p>如果你为错过的太阳而流泪，那么你也将错过整个群星。</p>
 				</div>
 			</div>
 			<div class="row">

@@ -22,10 +22,11 @@
     <ol class="breadcrumb">
         <li><a href="${ctx}/index.do">首页</a></li>
         <li><a href="${ctx}/index.do">系统主页面</a></li>
-        <li ng-bind="menus.menuName"></li>
-        <li ng-if="clickppM" ng-bind="clickppM.menuName"></li>
-        <li ng-if="clickpM" ng-bind="clickpM.menuName"></li>
-        <li ng-if="clickMenu" class="active" ng-bind="clickMenu.menuName"></li>
+       	<li ><a href="${ctx}/index.do">{{menus.menuName}}</a></li>
+       	<span> :</span>
+       	<span ng-repeat="menu in menus.nodes">
+			<a href="javascript:void(0)" ng-click="link(menu)"><span>{{menu.menuName}}<span ng-if="menus.nodes && $index!=(menus.nodes.length-1)">、</span></span></a>
+		</span>
     </ol>
 
     <div class="main_page">
@@ -39,9 +40,15 @@
         indexApp.controller("indexCtrl", ['$scope', '$Ajax', function ($scope, $Ajax) {
            
             $Ajax({url: "${ctx}/getMenuTree.do", type: "POST", data: {menuId: '${topMenu.id}'}}).then(function (data) {
-            	var href = data[0].url + "?menuId=" + data[0].id;
-                $scope.iframeSrc = "${ctx}" + href;
+            	 $scope.menus = data[0];
+            	 var href = data[0].url + "?menuId=" + data[0].id;
+                 $scope.iframeSrc = "${ctx}" + href;
             });
+            
+            $scope.link=function(menu){
+            	var href = menu.url + "?menuId=" + menu.id;
+                $scope.iframeSrc = "${ctx}" + href;
+            }
 
         }]);
 
