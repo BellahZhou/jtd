@@ -8,4 +8,6 @@ public interface LyService {
 	public List<Ly> getLysByUserId(Long userId);
 
 	public int insert(Ly ly);
+
+	public List<Ly> getLs();
 }

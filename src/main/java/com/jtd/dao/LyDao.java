@@ -9,4 +9,6 @@ public interface LyDao {
 	public abstract List<Ly> getLysByUserId(Long userId);
 
 	public abstract int insert(Ly ly);
+
+	public abstract List<Ly> getLs();
 }

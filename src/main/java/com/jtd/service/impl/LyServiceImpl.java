@@ -24,4 +24,9 @@ public class LyServiceImpl implements LyService{
 		return lyDao.insert(ly);
 	}
 
+	@Override
+	public List<Ly> getLs() {
+		return lyDao.getLs();
+	}
+
 }

@@ -12,6 +12,9 @@
         <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP"/>
     </resultMap>
+    <sql id="Base_Column_List" >
+	    ID, USER_ID, REMARK, REBACK, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE
+	</sql>
 
     <select id="getLysByUserId" parameterType="Long" resultMap="BaseResultMap">
         SELECT * FROM tb_ly WHERE user_id=#{userId}
@@ -20,4 +23,9 @@
     <insert  id="insert">
    		insert  into `tb_ly`(`USER_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) values(#{userId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
   	</insert>
+  	
+  	<select id="getLs" resultMap="BaseResultMap">
+        SELECT * FROM tb_ly 
+    </select>
+  	
 </mapper>

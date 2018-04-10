@@ -22,7 +22,7 @@
     <ol class="breadcrumb">
         <li><a href="${ctx}/index.do">首页</a></li>
         <li><a href="${ctx}/index.do">系统主页面</a></li>
-       	<li ><a href="${ctx}/index.do">{{menus.menuName}}</a></li>
+       	<li ><a href="javascript:void(0)" ng-click="link(menus)">{{menus.menuName}}</a></li>
        	<span> :</span>
        	<span ng-repeat="menu in menus.nodes">
 			<a href="javascript:void(0)" ng-click="link(menu)"><span>{{menu.menuName}}<span ng-if="menus.nodes && $index!=(menus.nodes.length-1)">、</span></span></a>
@@ -42,6 +42,7 @@
             $Ajax({url: "${ctx}/getMenuTree.do", type: "POST", data: {menuId: '${topMenu.id}'}}).then(function (data) {
             	 $scope.menus = data[0];
             	 var href = data[0].url + "?menuId=" + data[0].id;
+            	 $scope.mainHref="${ctx}" + href;
                  $scope.iframeSrc = "${ctx}" + href;
             });
             
@@ -49,7 +50,6 @@
             	var href = menu.url + "?menuId=" + menu.id;
                 $scope.iframeSrc = "${ctx}" + href;
             }
-
         }]);
 
     </script>
