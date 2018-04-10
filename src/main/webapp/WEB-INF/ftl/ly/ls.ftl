@@ -2,10 +2,10 @@
 <@body>
 	<div class="tab_frame_body" data-ng-app="indexApp" data-ng-controller="indexCtrl">
 	      <div id="pageGrid">
-		        <div data-ng-repeat="x in lys" >
+		        <div >
 		            <fieldset class="panel-field">
 		                <legend>历史记录</legend>
-		                <div class="panel-field-box form-horizontal">
+		                <div class="panel-field-box form-horizontal" data-ng-repeat="x in lys" >
 		                    <div class="form-group">
 		                        <label for="" class="col-sm-2 control-label">操作时间：</label>
 		                        <p class="help-block col-sm-3" ng-bind="x.createDate"></p>
@@ -21,6 +21,7 @@
 		                        <label for="" class="col-sm-2 control-label">留言回信：</label>
 		                        <p class="help-block col-sm-8" ng-bind="x.reback"></p>
 		                    </div>
+		                    
 		
 		                </div>
 		            </fieldset>
