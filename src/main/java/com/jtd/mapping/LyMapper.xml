@@ -15,7 +15,35 @@
     <sql id="Base_Column_List" >
 	    ID, USER_ID, REMARK, REBACK, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE
 	</sql>
-
+	
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtd.entity.Ly" >
+    update tb_ly
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="reback != null" >
+        REBACK = #{reback,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
     <select id="getLysByUserId" parameterType="Long" resultMap="BaseResultMap">
         SELECT * FROM tb_ly WHERE user_id=#{userId}
     </select>

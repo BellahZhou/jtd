@@ -10,4 +10,6 @@ public interface LyService {
 	public int insert(Ly ly);
 
 	public List<Ly> getLs();
+
+	public int update(Ly ly);
 }

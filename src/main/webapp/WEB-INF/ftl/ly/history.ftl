@@ -13,13 +13,14 @@
 		                        <p class="help-block col-sm-3" ng-bind="x.createBy"> </p>
 		                    </div>
 		                    
-		                    <div class="form-group" ng-if="x.remark">
+		                    <div class="form-group">
 		                        <label for="" class="col-sm-2 control-label">留言结果：</label>
 		                        <p class="help-block col-sm-3" ng-bind="x.remark"></p>
 		                    </div>
-		                    <div class="form-group" ng-if="x.reback">
+		                    <div class="form-group">
 		                        <label for="" class="col-sm-2 control-label">留言回信：</label>
-		                        <p class="help-block col-sm-8" ng-bind="x.reback"></p>
+		                        <input class="help-block col-sm-7" type="text" ng-model="x.reback"/>
+		                        <button class="btn btn-success" type="button" class="col-sm-1"  ng-click="ok(x)">回信</button>
 		                    </div>
 		                    
 		
@@ -35,10 +36,26 @@
 	    indexApp.controller("indexCtrl", ['$scope','$Ajax',function ($scope,$Ajax) {
 	    	$Ajax({
 	    	    type: "POST",
-	    	    url: "${ctx}/ly/ls.do"
+	    	    url: "${ctx}/ly/history.do"
 	    	}).then(function (data) {
 	    		$scope.lys=data;
 	    	});
+	    	
+	    	$scope.ok = function (x) {
+                $Ajax({
+                	contentType: "application/json",
+                    url: "${ctx}/ly/update",
+                    type: "POST",
+                    data: angular.toJson(x)
+                }).then(function (data) {
+                    if (data == 1) {
+                    	alert("更新成功!");
+                    }else{
+                        alert("更新失败!");
+                    }
+                	window.location.reload();
+                });
+         	};
 	    	
 	    }]);
 	</script>

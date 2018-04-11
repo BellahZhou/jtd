@@ -11,4 +11,6 @@ public interface LyDao {
 	public abstract int insert(Ly ly);
 
 	public abstract List<Ly> getLs();
+	
+	int updateByPrimaryKeySelective(Ly record);
 }

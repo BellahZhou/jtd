@@ -29,4 +29,9 @@ public class LyServiceImpl implements LyService{
 		return lyDao.getLs();
 	}
 
+	@Override
+	public int update(Ly ly) {
+		return lyDao.updateByPrimaryKeySelective(ly);
+	}
+
 }

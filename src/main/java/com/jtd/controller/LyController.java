@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +39,7 @@ public class LyController {
 		return lys;
 	}
 	
-	@RequestMapping(value = "/ls",method = RequestMethod.POST)
+	@RequestMapping(value = "/history",method = RequestMethod.POST)
 	@ResponseBody
 	public List<Ly> getLs(HttpSession session) throws Exception{
 		return lyService.getLs();
@@ -61,5 +62,9 @@ public class LyController {
 		}
 	}
 	
-
+	@RequestMapping(value = "/update",method = RequestMethod.POST)
+	@ResponseBody
+	public int update(@RequestBody Ly ly) throws Exception{
+		return lyService.update(ly);
+	}
 }
