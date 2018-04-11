@@ -114,4 +114,18 @@
       UPDATE_DATE = #{updateDate,jdbcType=DATE}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+  
+   <select id="selectByUserRole" resultMap="BaseResultMap" parameterType="com.jtd.entity.UserRole" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user_role
+    where 1=1
+     <if test="userId != null" >
+      and USER_ID = #{userId,jdbcType=BIGINT}
+     </if>
+     <if test="roleId != null" >
+       and ROLE_ID = #{roleId,jdbcType=BIGINT}
+     </if>
+  </select>
+  
 </mapper>

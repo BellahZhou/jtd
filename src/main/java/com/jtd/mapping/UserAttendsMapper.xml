@@ -139,4 +139,13 @@
     </if>
     
   </select>
+  
+  
+  <select id="getAttendsForVIP" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tb_user_attends
+    where 1=1
+    and ATTENDS>=10
+  </select>
 </mapper>

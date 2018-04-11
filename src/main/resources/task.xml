@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="UpgradeTask" class="com.jtd.task.UpgradeTask"></bean>
+    <bean id="UpgradeTaskDetail" class="com.jtd.task.SingleMethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="UpgradeTask"/>
+        </property>
+        <property name="targetMethod"> <!-- 要执行的方法名称 -->  
+	        <value>begin</value>  
+	    </property> 
+    </bean>
+
+    <!-- 定义触发器 -->
+    <bean id="UpgradeTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="UpgradeTaskDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!-- 每一年执行一次 59 59 23 31 12 ? -->
+            <!-- 每分钟执行一次 0 0/1 * * * ? -->
+            <!-- 早上5点跑一次 0 0 5 * * ? -->
+            <value>0 0 5 * * ?</value>
+        </property>
+    </bean>
+
+
+    <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="triggers">
+            <list>
+                <ref bean="UpgradeTaskTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

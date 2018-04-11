@@ -11,4 +11,6 @@ public interface UserAttendsService {
 
 	int update(UserAttends userAttends);
 
+	void upgrade();
+
 }

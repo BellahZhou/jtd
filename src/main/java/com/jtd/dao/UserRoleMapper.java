@@ -1,5 +1,9 @@
 package com.jtd.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.jtd.entity.UserRole;
 
 public interface UserRoleMapper {
@@ -14,4 +18,6 @@ public interface UserRoleMapper {
     int updateByPrimaryKeySelective(UserRole record);
 
     int updateByPrimaryKey(UserRole record);
+
+	List<UserRole> selectByUserRole(UserRole record);
 }

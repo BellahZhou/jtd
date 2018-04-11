@@ -1,5 +1,7 @@
 package com.jtd.dao;
 
+import java.util.List;
+
 import com.jtd.entity.User;
 import com.jtd.entity.UserAttends;
 
@@ -17,4 +19,6 @@ public interface UserAttendsMapper {
     int updateByPrimaryKey(UserAttends record);
 
 	UserAttends selectByUser(UserAttends userAttends);
+
+	List<UserAttends> getAttendsForVIP();
 }
