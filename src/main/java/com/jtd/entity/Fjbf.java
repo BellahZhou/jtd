@@ -1,6 +1,8 @@
 package com.jtd.entity;
 
-public class Fjbf extends IDE{
+import java.io.Serializable;
+
+public class Fjbf extends IDE implements Serializable{
     private Long id;
 
     private Long userId;

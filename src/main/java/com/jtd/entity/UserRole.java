@@ -1,8 +1,9 @@
 package com.jtd.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserRole extends IDE{
+public class UserRole extends IDE implements Serializable{
     private Long id;
 
     private Long userId;

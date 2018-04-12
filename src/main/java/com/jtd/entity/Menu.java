@@ -1,12 +1,14 @@
 package com.jtd.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table(name = "TB_MENU")
-public class Menu extends IDE{
+public class Menu extends IDE implements Serializable{
 	
 	private static final long serialVersionUID = 8026813053768023527L;
     @Id

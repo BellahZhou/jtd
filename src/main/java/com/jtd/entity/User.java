@@ -1,5 +1,6 @@
 package com.jtd.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;  
 import java.util.Collection;  
 import java.util.HashMap;  
@@ -14,7 +15,7 @@ import javax.persistence.Transient;
 
   
 @Table(name = "TB_USER")   
-public class User extends IDE{  
+public class User extends IDE implements Serializable{  
       
     private static final long serialVersionUID = 8026813053768023527L;  
     @Id

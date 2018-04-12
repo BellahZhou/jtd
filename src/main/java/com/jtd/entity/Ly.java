@@ -1,5 +1,6 @@
 package com.jtd.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,7 +9,7 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Ly extends IDE{
+public class Ly extends IDE implements Serializable{
 	@Id
 	@Column(name="ID")
 	private Long id;

@@ -1,8 +1,8 @@
 package com.jtd.entity;
 
-import java.util.Set;
+import java.io.Serializable;
 
-public class Role {
+public class Role extends IDE implements Serializable{
 	private Long id;
 	private String roleName;
 	private String roleCode;
