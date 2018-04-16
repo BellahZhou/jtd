@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<img src="${ctx}/common/images/top_1.png"> 
+					<img src="${ctx}/common/images/rise.png"> 
 				</div>
 			</div>
 			<div class="row">
@@ -18,7 +18,7 @@
 						</div>
 						<div class="col-md-6" style="padding-left:0px;padding-right:5px">
 							<div style="width:497px;height:90px"></div>
-							<img src="${ctx}/common/images/middle_1.png">
+							<img src="${ctx}/common/images/middle_2.png">
 						</div>
 					</div>
 					<div class="row"><hr></div>
@@ -50,27 +50,27 @@
 				</div>
 				<div class="col-md-3" style="padding-left:0px">
 					<h2 style="margin-left:50px">BLOG</h2>
-					<h6>ONLINE</h6>
+					<h6>TO DO</h6>
 					<h4 style="margin-left:50px">LOOK AT THE FACE</h4>
 					<h6 style="margin-left:50px">LOO KA FACE</h6>
 					<hr>
-					<h6>ONLINE</h6>
+					<h6>TO DO</h6>
 					<h4 style="margin-left:50px">PLAY THE PINAO</h4>
 					<h6 style="margin-left:50px">DO RE MI FA SO LA XI DO...</h6>
 					<hr>
-					<h6>ONLINE</h6>
+					<h6>TO DO</h6>
 					<h4 style="margin-left:50px">EAT SNACKS</h4>
 					<h6 style="margin-left:50px">HAVE A GREAT DAY</h6>
 					<hr>
-					<h6>ONLINE</h6>
+					<h6>TO DO</h6>
 					<h4 style="margin-left:50px">HAVE NOT WORK</h4>
 					<h6 style="margin-left:50px">WHAT YOU WANNA</h6>
 					<hr>
-					<h6>ONLINE</h6>
+					<h6>TO DO</h6>
 					<h4 style="margin-left:50px">COOK FOR YOUR LOVE</h4>
 					<h6 style="margin-left:50px">BOY FRIEND</h6>
 					<hr>
-					<h6>ONLINE</h6>
+					<h6>TO DO</h6>
 					<h4 style="margin-left:50px">PICK UP YOUR COMPUTER</h4>
 					<h6 style="margin-left:50px">RIGHT DOWN IDEALS,SUCH AS CHICKEN CLUB FOR THE SOUL</h6>
 				</div>
