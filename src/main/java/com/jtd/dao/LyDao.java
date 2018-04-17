@@ -13,4 +13,6 @@ public interface LyDao {
 	public abstract List<Ly> getLs();
 	
 	int updateByPrimaryKeySelective(Ly record);
+
+	public abstract Ly selectByProInstIdAndTaskId(String processInstanceId,String taskId);
 }

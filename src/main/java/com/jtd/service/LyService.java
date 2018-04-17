@@ -12,4 +12,6 @@ public interface LyService {
 	public List<Ly> getLs();
 
 	public int update(Ly ly);
+
+	public Ly selectByProInstIdAndTaskId(String processInstanceId,String taskId);
 }

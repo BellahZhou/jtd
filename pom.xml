@@ -275,12 +275,34 @@
 		    <version>2.6.0</version>
 		</dependency>
 		
+		<!-- activiti begin -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-json-converter</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<!-- activiti end -->
+		
   </dependencies>
   
   
     <properties>
         <!-- Spring版本号 -->
         <spring.version>4.3.8.RELEASE</spring.version>
+        
+        <activiti.version>5.22.0</activiti.version>
     </properties>
   
   	<!-- 指定maven编译方式为jdk1.7版本 -->  

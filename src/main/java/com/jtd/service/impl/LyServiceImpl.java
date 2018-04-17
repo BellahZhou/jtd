@@ -34,4 +34,9 @@ public class LyServiceImpl implements LyService{
 		return lyDao.updateByPrimaryKeySelective(ly);
 	}
 
+	@Override
+	public Ly selectByProInstIdAndTaskId(String processInstanceId,String taskId) {
+		return lyDao.selectByProInstIdAndTaskId(processInstanceId,taskId);
+	}
+
 }

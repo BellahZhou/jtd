@@ -14,5 +14,8 @@
     
      <!-- spring-task -->
     <import resource="classpath:task.xml"/>
+    
+    <!-- 导入activiti配置文件 -->  
+ 	<import resource="activiti.cfg.xml"/>  
 
 </beans>

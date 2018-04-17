@@ -7,6 +7,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jtd.dao.LyDao;
+import com.jtd.dto.TaskDto;
+import com.jtd.entity.BaseTask;
 import com.jtd.entity.Ly;
 import com.jtd.entity.User;
 import com.jtd.service.IUserService;
 import com.jtd.service.LyService;
+import com.jtd.service.impl.ActivitiService;
 import com.jtd.util.SecurityContextUtil;
 
 @Controller
@@ -29,7 +33,26 @@ public class LyController {
 	private LyService lyService;
 	@Resource(name="userService")
 	private IUserService userService;
+	@Autowired
+	private ActivitiService activitiService;
 	
+	@RequestMapping(value = "/myTask",method = RequestMethod.POST)
+	@ResponseBody
+	public List<Task> getmyTask(HttpSession session){
+		List<TaskDto> taskDtos=new ArrayList<TaskDto>();
+		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
+		List<Task> tasks=activitiService.queryTask(user);
+		 for (Task task : tasks) {
+		        System.out.println("ID:"+task.getId()+",姓名:"+task.getName()+",接收人:"+task.getAssignee()+",开始时间:"+task.getCreateTime());  
+//		        TaskDto bt=  ((TaskDto)task);
+//		        
+//		        bt.setLy(lyService.selectByProInstIdAndTaskId(task.getProcessInstanceId(),task.getId()));
+//		        taskDtos.add(bt);
+		 } 
+		return tasks;
+	}
+	
+
 	@RequestMapping("/myLyDetail")
 	@ResponseBody
 	public List<Ly> getLy(HttpSession session) throws Exception{
@@ -54,7 +77,11 @@ public class LyController {
 		ly.setCreateDate(new Date());
 		ly.setUpdateBy(user.getUsername());
 		ly.setUpdateDate(new Date());
+		
+		ProcessInstance processInstance=activitiService.startFlow();
+		ly.setProcInstId(processInstance.getProcessInstanceId());
 		int i=lyService.insert(ly);
+		
 		if(i==1){
 			return i;
 		}else{

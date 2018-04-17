@@ -14,7 +14,10 @@
 			        </div>
 			    </div>
 			     
-			</fieldset>     
+			</fieldset>  
+			
+			
+			   
    
 	  		
 	  		
@@ -24,6 +27,43 @@
 			</div>
 	    </form>
 	    
+	    
+	    <div class="table_wrap">
+	        <div class="set_bar">
+	            <div class="form-group">
+	            </div>
+	        </div>
+	        <@p.table fixed=true>
+	            <@p.thead>
+	                <tr>
+	                    <th width="40"><span>序号</span></th>
+	                    <th width="70"><span>ID:</span></th>
+	                    <th width="100"><span>姓名:</span></th>
+	                    <th width="200"><span>接收人:</span></th>
+	                    <th width="70"><span>开始时间:</span></th>
+	                </tr>
+	            </@p.thead>
+	            <@p.tbody>
+	                <tr ng-class="{true: 'active'}[x.checked]" data-ng-repeat="x in tasks" repeat-finish>
+	                    <td class="t_c" ng-bind="$index + 1"></td>
+	                    <td>
+	                        <div class="text_wrap" ng-bind="x.id"></div>
+	                    </td>
+	                    <td>
+	                        <div class="text_wrap" ng-bind="x.name"></div>
+	                    </td>
+	                    <td>
+	                        <div class="text_wrap" ng-bind="x.assignee"></div>
+	                    </td>
+	                    <td>
+	                        <div class="text_wrap" ng-bind="x.createTime"></div>
+	                    </td>
+	                    
+	                </tr>
+	            </@p.tbody>
+	        </@p.table>
+	    </div>
+	    
 	</div>
 
 
@@ -32,6 +72,14 @@
 	<script type="text/javascript">
 	    var indexApp = angular.module("indexApp", ["commApp"]);
 	    indexApp.controller("indexCtrl", ['$scope','$Ajax',function ($scope,$Ajax) {
+	    	$Ajax({
+	                url: "${ctx}/ly/myTask.do",
+	                type: "POST"
+	        }).then(function (data) {
+	        	debugger;
+	        	$scope.tasks=data;
+	        });
+	    	
 	    	
 	    	$scope.doSubmit=function(){
 	    		if(!$scope.item.remark){

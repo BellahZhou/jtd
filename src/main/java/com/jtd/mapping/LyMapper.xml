@@ -5,6 +5,8 @@
 	<cache eviction="LRU" type="com.jtd.cache.RedisCache" />
 	<resultMap id="BaseResultMap" type="com.jtd.entity.Ly">
         <id column="ID" property="id" jdbcType="DECIMAL"/>
+         <result column="PROC_INST_ID" property="procInstId" jdbcType="VARCHAR"/>
+         <result column="TASK_ID" property="taskId" jdbcType="VARCHAR"/>
         <result column="USER_ID" property="userId" jdbcType="DECIMAL"/>
         <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
         <result column="REBACK" property="reback" jdbcType="VARCHAR"/>
@@ -50,11 +52,14 @@
     </select>
     
     <insert  id="insert">
-   		insert  into `tb_ly`(`USER_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) values(#{userId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
+   		insert  into `tb_ly`(`USER_ID`,`PROC_INST_ID`,`TASK_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) values(#{userId},#{procInstId},#{taskId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
   	</insert>
   	
   	<select id="getLs" resultMap="BaseResultMap">
         SELECT * FROM tb_ly 
     </select>
-  	
+    
+    <select id="selectByProInstIdAndTaskId" resultMap="BaseResultMap">
+    	SELECT * FROM tb_ly WHERE 1=1 and PROC_INST_ID=#{processInstanceId} and TASK_ID=#{taskId} 
+  	</select>
 </mapper>

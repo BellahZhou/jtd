@@ -13,6 +13,11 @@ public class Ly extends IDE implements Serializable{
 	@Id
 	@Column(name="ID")
 	private Long id;
+	@Column(name="PROC_INST_ID")
+	private String procInstId;
+	@Column(name="TASK_ID")
+	private String taskId;
+	
 	@Column(name="USER_ID")
 	private Long userId;
 	@Column(name="REMARK")
@@ -26,6 +31,15 @@ public class Ly extends IDE implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+  public void setProcInstId(String procInstId)
+  {
+    this.procInstId = procInstId;
+  }
+  
+  public String getProcInstId()
+  {
+    return this.procInstId;
+  }
 	public Long getUserId() {
 		return userId;
 	}
@@ -43,6 +57,12 @@ public class Ly extends IDE implements Serializable{
 	}
 	public void setReback(String reback) {
 		this.reback = reback;
+	}
+	public String getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
 	}
 	
 
