@@ -12,11 +12,13 @@ import org.activiti.engine.task.Task;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jtd.dto.LyDto;
 import com.jtd.dto.TaskDto;
 import com.jtd.entity.BaseTask;
 import com.jtd.entity.Ly;
@@ -38,18 +40,24 @@ public class LyController {
 	
 	@RequestMapping(value = "/myTask",method = RequestMethod.POST)
 	@ResponseBody
-	public List<Task> getmyTask(HttpSession session){
-		List<TaskDto> taskDtos=new ArrayList<TaskDto>();
+	public List<LyDto> getmyTask(){
+		List<LyDto> taskDtos=new ArrayList<LyDto>();
 		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
 		List<Task> tasks=activitiService.queryTask(user);
-		 for (Task task : tasks) {
-		        System.out.println("ID:"+task.getId()+",姓名:"+task.getName()+",接收人:"+task.getAssignee()+",开始时间:"+task.getCreateTime());  
-//		        TaskDto bt=  ((TaskDto)task);
-//		        
-//		        bt.setLy(lyService.selectByProInstIdAndTaskId(task.getProcessInstanceId(),task.getId()));
-//		        taskDtos.add(bt);
-		 } 
-		return tasks;
+		LyDto lyDto=new LyDto();
+		for (Task task : tasks) { 
+			 Ly ly=(lyService.selectByProInstIdAndTaskId(task.getProcessInstanceId(), task.getId()));
+			 lyDto.setId(ly.getId());
+			 lyDto.setRemark(ly.getRemark());
+			 lyDto.setTaskId(ly.getTaskId());
+			 lyDto.setTaskName(task.getName());
+			 lyDto.setAssingee(task.getAssignee());
+			 lyDto.setTaskCreateTime(task.getCreateTime());
+		     System.out.println("ID:"+task.getId()+",姓名:"+task.getName()+",接收人:"+task.getAssignee()+",开始时间:"+task.getCreateTime());  
+		     taskDtos.add(lyDto);
+		     
+		} 
+		return taskDtos;
 	}
 	
 

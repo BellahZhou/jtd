@@ -28,9 +28,10 @@
 	    </form>
 	    
 	    
-	    <div class="table_wrap">
+	    <div class="table_wrap" ng-show="tasks">
 	        <div class="set_bar">
 	            <div class="form-group">
+	            <h4>代办任务</h4>
 	            </div>
 	        </div>
 	        <@p.table fixed=true>
@@ -38,25 +39,29 @@
 	                <tr>
 	                    <th width="40"><span>序号</span></th>
 	                    <th width="70"><span>ID:</span></th>
-	                    <th width="100"><span>姓名:</span></th>
-	                    <th width="200"><span>接收人:</span></th>
-	                    <th width="70"><span>开始时间:</span></th>
+	                    <th width="100"><span>任务名:</span></th>
+	                    <th width="70"><span>接收人:</span></th>
+	                    <th width="100"><span>开始时间:</span></th>
+	                    <th width="100"><span>留言:</span></th>
 	                </tr>
 	            </@p.thead>
 	            <@p.tbody>
 	                <tr ng-class="{true: 'active'}[x.checked]" data-ng-repeat="x in tasks" repeat-finish>
 	                    <td class="t_c" ng-bind="$index + 1"></td>
 	                    <td>
-	                        <div class="text_wrap" ng-bind="x.id"></div>
+	                        <div class="text_wrap" ng-bind="x.taskId"></div>
 	                    </td>
 	                    <td>
-	                        <div class="text_wrap" ng-bind="x.name"></div>
+	                        <div class="text_wrap" ng-bind="x.taskName"></div>
 	                    </td>
 	                    <td>
-	                        <div class="text_wrap" ng-bind="x.assignee"></div>
+	                        <div class="text_wrap" ng-bind="x.assingee"></div>
 	                    </td>
 	                    <td>
-	                        <div class="text_wrap" ng-bind="x.createTime"></div>
+	                        <div class="text_wrap">{{ x.taskCreateTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+	                    </td>
+	                    <td>
+	                        <div class="text_wrap" ng-bind="x.remark"></div>
 	                    </td>
 	                    
 	                </tr>
@@ -76,10 +81,8 @@
 	                url: "${ctx}/ly/myTask.do",
 	                type: "POST"
 	        }).then(function (data) {
-	        	debugger;
-	        	$scope.tasks=data;
-	        });
-	    	
+                $scope.tasks=data;
+            });
 	    	
 	    	$scope.doSubmit=function(){
 	    		if(!$scope.item.remark){
