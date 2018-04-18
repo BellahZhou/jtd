@@ -40,5 +40,11 @@ public class ActivitiService {
 	    } 
 	    return tasks;
 	}
+	
+	public void startTask(String taskId){  
+	    //taskId 就是查询任务中的 ID  
+	    //完成请假申请任务  
+	    taskService.complete(taskId );  
+	} 
 
 }

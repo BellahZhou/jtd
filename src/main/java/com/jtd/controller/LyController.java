@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jtd.dto.LyDto;
@@ -46,10 +47,10 @@ public class LyController {
 		List<Task> tasks=activitiService.queryTask(user);
 		LyDto lyDto=new LyDto();
 		for (Task task : tasks) { 
-			 Ly ly=(lyService.selectByProInstIdAndTaskId(task.getProcessInstanceId(), task.getId()));
+			 Ly ly=lyService.selectByProInstIdAndTaskId(task.getProcessInstanceId());
 			 lyDto.setId(ly.getId());
 			 lyDto.setRemark(ly.getRemark());
-			 lyDto.setTaskId(ly.getTaskId());
+			 lyDto.setTaskId(task.getId());
 			 lyDto.setTaskName(task.getName());
 			 lyDto.setAssingee(task.getAssignee());
 			 lyDto.setTaskCreateTime(task.getCreateTime());
@@ -101,5 +102,12 @@ public class LyController {
 	@ResponseBody
 	public int update(@RequestBody Ly ly) throws Exception{
 		return lyService.update(ly);
+	}
+	
+
+	@RequestMapping("/completeTask")
+	@ResponseBody
+	public void completeTask(@RequestParam(value="taskId") String taskId){
+		activitiService.startTask(taskId);
 	}
 }

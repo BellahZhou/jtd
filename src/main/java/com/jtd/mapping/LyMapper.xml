@@ -60,6 +60,6 @@
     </select>
     
     <select id="selectByProInstIdAndTaskId" resultMap="BaseResultMap">
-    	SELECT * FROM tb_ly WHERE 1=1 and PROC_INST_ID=#{processInstanceId} and TASK_ID=#{taskId} 
+    	SELECT * FROM tb_ly WHERE 1=1 and PROC_INST_ID=#{processInstanceId} 
   	</select>
 </mapper>

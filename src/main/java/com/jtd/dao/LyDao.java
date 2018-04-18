@@ -15,5 +15,5 @@ public interface LyDao {
 	
 	int updateByPrimaryKeySelective(Ly record);
 
-	public abstract Ly selectByProInstIdAndTaskId(@Param("processInstanceId") String processInstanceId,@Param("taskId") String taskId);
+	public abstract Ly selectByProInstIdAndTaskId(@Param("processInstanceId") String processInstanceId);
 }

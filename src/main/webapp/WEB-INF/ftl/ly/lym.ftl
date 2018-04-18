@@ -28,7 +28,7 @@
 	    </form>
 	    
 	    
-	    <div class="table_wrap" ng-show="tasks">
+	    <div class="table_wrap" ng-show="tasks!=null&&tasks.length>0">
 	        <div class="set_bar">
 	            <div class="form-group">
 	            <h4>代办任务</h4>
@@ -43,6 +43,7 @@
 	                    <th width="70"><span>接收人:</span></th>
 	                    <th width="100"><span>开始时间:</span></th>
 	                    <th width="100"><span>留言:</span></th>
+	                    <th width="100"><span>代办:</span></th>
 	                </tr>
 	            </@p.thead>
 	            <@p.tbody>
@@ -62,6 +63,9 @@
 	                    </td>
 	                    <td>
 	                        <div class="text_wrap" ng-bind="x.remark"></div>
+	                    </td>
+	                    <td>
+	                        <div class="text_wrap"><button class="btn btn-success" ng-click="completeTask(x.taskId)">同意</button></div>
 	                    </td>
 	                    
 	                </tr>
@@ -104,6 +108,18 @@
                 });
 	    		
 	    	}
+	    	
+	    	$scope.completeTask=function(taskId){
+	    		$Ajax({
+	    				
+	                    url: "${ctx}/ly/completeTask",
+	                    type: "POST",
+                        data: {taskId:taskId}
+                });
+	    		
+	    		window.location.reload();
+	    		
+	    	};
 	    	
 	    	$scope.back = function () {
                 window.history.go(-1);

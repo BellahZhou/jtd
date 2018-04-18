@@ -13,5 +13,5 @@ public interface LyService {
 
 	public int update(Ly ly);
 
-	public Ly selectByProInstIdAndTaskId(String processInstanceId,String taskId);
+	public Ly selectByProInstIdAndTaskId(String processInstanceId);
 }

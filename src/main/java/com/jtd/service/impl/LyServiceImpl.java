@@ -35,8 +35,8 @@ public class LyServiceImpl implements LyService{
 	}
 
 	@Override
-	public Ly selectByProInstIdAndTaskId(String processInstanceId,String taskId) {
-		return lyDao.selectByProInstIdAndTaskId(processInstanceId,taskId);
+	public Ly selectByProInstIdAndTaskId(String processInstanceId) {
+		return lyDao.selectByProInstIdAndTaskId(processInstanceId);
 	}
 
 }
