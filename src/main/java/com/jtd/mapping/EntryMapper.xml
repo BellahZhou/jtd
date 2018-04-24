@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtd.dao.EntryMapper" >
+  <resultMap id="BaseResultMap" type="com.jtd.entity.Entry" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="DICT_TYPE_ID" property="dictTypeId" jdbcType="VARCHAR" />
+    <result column="DICT_ID" property="dictId" jdbcType="VARCHAR" />
+    <result column="DICT_NAME" property="dictName" jdbcType="VARCHAR" />
+    <result column="RANK" property="rank" jdbcType="BIGINT" />
+    <result column="SEQ_NO" property="seqNo" jdbcType="VARCHAR" />
+    <result column="FILTER1" property="filter1" jdbcType="VARCHAR" />
+    <result column="FILTER2" property="filter2" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jtd.entity.Entry" extends="BaseResultMap" >
+    <result column="SORT_NO" property="sortNo" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DICT_TYPE_ID, DICT_ID, DICT_NAME, RANK, SEQ_NO, FILTER1, FILTER2, CREATE_DATE, 
+    CREATE_BY, UPDATE_DATE, UPDATE_BY
+  </sql>
+  <sql id="Blob_Column_List" >
+    SORT_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dict_entry
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+  <select id="selectOne" parameterType="com.jtd.entity.Entry" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dict_entry
+    where 1=1 and
+     <set >
+      <if test="dictEntry.dictTypeId != null" >
+        DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.dictId != null" >
+        DICT_ID = #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.dictName != null" >
+        DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.rank != null" >
+        RANK = #{rank,jdbcType=BIGINT},
+      </if>
+      <if test="dictEntry.seqNo != null" >
+        SEQ_NO = #{seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.filter1 != null" >
+        FILTER1 = #{filter1,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.filter2 != null" >
+        FILTER2 = #{filter2,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="dictEntry.createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="dictEntry.updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="dictEntry.sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=BINARY},
+      </if>
+    </set>
+    
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dict_entry
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtd.entity.Entry" >
+    insert into dict_entry (ID, DICT_TYPE_ID, DICT_ID, 
+      DICT_NAME, RANK, SEQ_NO, 
+      FILTER1, FILTER2, CREATE_DATE, 
+      CREATE_BY, UPDATE_DATE, UPDATE_BY, 
+      SORT_NO)
+    values (#{id,jdbcType=BIGINT}, #{dictTypeId,jdbcType=VARCHAR}, #{dictId,jdbcType=VARCHAR}, 
+      #{dictName,jdbcType=VARCHAR}, #{rank,jdbcType=BIGINT}, #{seqNo,jdbcType=VARCHAR}, 
+      #{filter1,jdbcType=VARCHAR}, #{filter2,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, #{updateBy,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtd.entity.Entry" >
+    insert into dict_entry
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="dictTypeId != null" >
+        DICT_TYPE_ID,
+      </if>
+      <if test="dictId != null" >
+        DICT_ID,
+      </if>
+      <if test="dictName != null" >
+        DICT_NAME,
+      </if>
+      <if test="rank != null" >
+        RANK,
+      </if>
+      <if test="seqNo != null" >
+        SEQ_NO,
+      </if>
+      <if test="filter1 != null" >
+        FILTER1,
+      </if>
+      <if test="filter2 != null" >
+        FILTER2,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dictTypeId != null" >
+        #{dictTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictId != null" >
+        #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=BIGINT},
+      </if>
+      <if test="seqNo != null" >
+        #{seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="filter1 != null" >
+        #{filter1,jdbcType=VARCHAR},
+      </if>
+      <if test="filter2 != null" >
+        #{filter2,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtd.entity.Entry" >
+    update dict_entry
+    <set >
+      <if test="dictTypeId != null" >
+        DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictId != null" >
+        DICT_ID = #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        RANK = #{rank,jdbcType=BIGINT},
+      </if>
+      <if test="seqNo != null" >
+        SEQ_NO = #{seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="filter1 != null" >
+        FILTER1 = #{filter1,jdbcType=VARCHAR},
+      </if>
+      <if test="filter2 != null" >
+        FILTER2 = #{filter2,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=BINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jtd.entity.Entry" >
+    update dict_entry
+    set DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR},
+      DICT_ID = #{dictId,jdbcType=VARCHAR},
+      DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      RANK = #{rank,jdbcType=BIGINT},
+      SEQ_NO = #{seqNo,jdbcType=VARCHAR},
+      FILTER1 = #{filter1,jdbcType=VARCHAR},
+      FILTER2 = #{filter2,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      SORT_NO = #{sortNo,jdbcType=BINARY}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtd.entity.Entry" >
+    update dict_entry
+    set DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR},
+      DICT_ID = #{dictId,jdbcType=VARCHAR},
+      DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      RANK = #{rank,jdbcType=BIGINT},
+      SEQ_NO = #{seqNo,jdbcType=VARCHAR},
+      FILTER1 = #{filter1,jdbcType=VARCHAR},
+      FILTER2 = #{filter2,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getEntry0" resultMap="ResultMapWithBLOBs">
+      SELECT * FROM DICT_ENTRY WHERE DICT_TYPE_ID = #{dictTypeId} 
+      ORDER BY SORT_NO ASC
+  </select>
+</mapper>

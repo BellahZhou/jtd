@@ -21,11 +21,12 @@
 	<script type="text/javascript" src="${ctx}/common/js/jquery-1.11.1.min.js"></script> 
 	<script type="text/javascript" src="${ctx}/common/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${ctx}/common/js/vpplayer.js"></script> 
-	 
     
     <script type="text/javascript" src="${ctx}/common/js/angular/angular-1.3.1.min.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular.ajax.js"></script>
+	<script type="text/javascript" src="${ctx}/common/js/angular/angular.dict.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular.common.js"></script>
+	
         
     <script type="text/javascript">
         var contextPath = "${ctx}";

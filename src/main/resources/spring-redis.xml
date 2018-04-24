@@ -13,8 +13,23 @@
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 
-    <!-- 加载db.properties文件中的内容，db.properties文件中key命名要有一定的特殊规则 -->
-  
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg index="0" ref="redisTemplate"/>
+        <property name="usePrefix" value="true"/>
+        <property name="transactionAware" value="true"/>
+        <property name="loadRemoteCachesOnStartup" value="${redis.loadRemoteCachesOnStartup}"/>
+        <property name="defaultExpiration" value="${redis.defaultExpiration}"/>
+        <property name="cacheNames">
+        	<set>
+        		<!-- 业务字典缓存 -->
+        		<value>DictEntry</value>
+             
+                <!-- 用户权限缓存 
+                <value>Authority</value>
+                -->
+        	</set>
+        </property>
+    </bean>  
     <!-- redis数据源 -->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxIdle" value="${redis.maxIdle}" />
@@ -22,12 +37,22 @@
         <property name="maxWaitMillis" value="${redis.maxWait}" />
         <property name="testOnBorrow" value="${redis.testOnBorrow}" />
     </bean>
+    
     <!-- Spring-redis连接池管理工厂 -->
     <bean id="jedisConnectionFactory"
         class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
         p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"
         p:pool-config-ref="poolConfig" />
   
-   
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
+        <property name="keySerializer" ref="KeyRedisSerializer"/>
+        <property name="valueSerializer" ref="GenericJackson2JsonRedisSerializer"/>
+    </bean>
+    
+    <bean id="GenericJackson2JsonRedisSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"></bean>
+    
+    <bean id="KeyRedisSerializer" class="com.jtd.util.KeyRedisSerializer"/>
+    
 
 </beans>

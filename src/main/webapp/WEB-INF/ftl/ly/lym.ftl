@@ -65,7 +65,13 @@
 	                        <div class="text_wrap" ng-bind="x.remark"></div>
 	                    </td>
 	                    <td>
-	                        <div class="text_wrap"><button class="btn btn-success" ng-click="completeTask(x.taskId)">同意</button></div>
+	                        <div class="text_wrap">
+	                        <select class="form-control" ng-model="item.itemNew" name="itemNew"
+		                            ng-options="x.dictId as x.dictName for x in results"
+		                            ng-selected="x.dictId==item.itemNews">
+		                    </select>
+	                        
+	                        </div>
 	                    </td>
 	                    
 	                </tr>
@@ -80,13 +86,18 @@
 	<@javascript>
 	<script type="text/javascript">
 	    var indexApp = angular.module("indexApp", ["commApp"]);
-	    indexApp.controller("indexCtrl", ['$scope','$Ajax',function ($scope,$Ajax) {
-	    	$Ajax({
-	                url: "${ctx}/ly/myTask.do",
-	                type: "POST"
-	        }).then(function (data) {
-                $scope.tasks=data;
-            });
+	    indexApp.controller("indexCtrl", ['$scope','$dictService','$Ajax',function ($scope,$dictService,$Ajax) {
+	    	<@p.ItemDetailJs/>
+	    	
+	    	$scope.query=function(){
+		    	$Ajax({
+		                url: "${ctx}/ly/myTask.do",
+		                type: "POST"
+		        }).then(function (data) {
+	                $scope.tasks=data;
+	            });
+	    	}
+	    	$scope.query();
 	    	
 	    	$scope.doSubmit=function(){
 	    		if(!$scope.item.remark){
@@ -104,7 +115,7 @@
                 	}else{
                 		alert("提交失败");
                 	}
-                	window.location.reload();
+                	$scope.query();
                 });
 	    		
 	    	}
@@ -115,9 +126,9 @@
 	                    url: "${ctx}/ly/completeTask",
 	                    type: "POST",
                         data: {taskId:taskId}
+                }).then(function (data) {
+	    			$scope.query();
                 });
-	    		
-	    		window.location.reload();
 	    		
 	    	};
 	    	

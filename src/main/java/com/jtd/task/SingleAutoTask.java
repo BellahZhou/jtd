@@ -14,7 +14,7 @@ public abstract class SingleAutoTask {
         String hostIP = "";
         try {
             hostIP = InetAddress.getLocalHost().getHostAddress();
-            logger.info("æœåŠ¡å™¨IP ---> " + hostIP);
+            logger.info("·þÎñÆ÷IP ---> " + hostIP);
         } catch (UnknownHostException e) {
             logger.error(e.getMessage(), e);
         }

@@ -45,8 +45,8 @@ public class LyController {
 		List<LyDto> taskDtos=new ArrayList<LyDto>();
 		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
 		List<Task> tasks=activitiService.queryTask(user);
-		LyDto lyDto=new LyDto();
 		for (Task task : tasks) { 
+			 LyDto lyDto=new LyDto();
 			 Ly ly=lyService.selectByProInstIdAndTaskId(task.getProcessInstanceId());
 			 lyDto.setId(ly.getId());
 			 lyDto.setRemark(ly.getRemark());
