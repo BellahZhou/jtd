@@ -21,9 +21,10 @@
 	<script type="text/javascript" src="${ctx}/common/js/jquery-1.11.1.min.js"></script> 
 	<script type="text/javascript" src="${ctx}/common/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${ctx}/common/js/vpplayer.js"></script> 
-    
+    <script type="text/javascript" src="${ctx}/common/js/jquery.twbsPagination.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular-1.3.1.min.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular.ajax.js"></script>
+    <script type="text/javascript" src="${ctx}/common/js/angular/loading-bar.js"></script>
 	<script type="text/javascript" src="${ctx}/common/js/angular/angular.dict.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular.common.js"></script>
 	
@@ -46,6 +47,7 @@
                 return (a >= 0);
             },
             pushPageData: function (c) {
+            	debugger
                 for (var b = 0,
                              a = c.length; b < a; b++) {
                     this[this.length] = c[b];

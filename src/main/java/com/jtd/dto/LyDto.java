@@ -5,12 +5,18 @@ import java.util.Date;
 import com.jtd.entity.Ly;
 
 public class LyDto extends Ly{
-	
+	private String taskId;
 	private String taskName;
-	private String assingee;
+	private String assignee;
 	private Date taskCreateTime;
 	
 	
+	public String getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
 	public Date getTaskCreateTime() {
 		return taskCreateTime;
 	}
@@ -23,12 +29,13 @@ public class LyDto extends Ly{
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
 	}
-	public String getAssingee() {
-		return assingee;
+	public String getAssignee() {
+		return assignee;
 	}
-	public void setAssingee(String assingee) {
-		this.assingee = assingee;
+	public void setAssignee(String assignee) {
+		this.assignee = assignee;
 	}
+
 	
 
 }

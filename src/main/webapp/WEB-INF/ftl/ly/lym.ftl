@@ -86,15 +86,16 @@
 	<@javascript>
 	<script type="text/javascript">
 	    var indexApp = angular.module("indexApp", ["commApp"]);
-	    indexApp.controller("indexCtrl", ['$scope','$dictService','$Ajax',function ($scope,$dictService,$Ajax) {
+	    indexApp.controller("indexCtrl", ['$scope','$dictService','$Ajax','$PagingService',function ($scope,$dictService,$Ajax,$PagingService) {
 	    	<@p.ItemDetailJs/>
 	    	
 	    	$scope.query=function(){
-		    	$Ajax({
-		                url: "${ctx}/ly/myTask.do",
-		                type: "POST"
-		        }).then(function (data) {
-	                $scope.tasks=data;
+	    		$scope.tasks=[];
+	    		$PagingService.query({
+	                url: "${ctx}/ly/myTask.do"
+		        }).listen(function (responseData) {
+		        	debugger
+	                $scope.tasks.pushPageData(responseData.list);
 	            });
 	    	}
 	    	$scope.query();

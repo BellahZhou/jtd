@@ -1,8 +1,11 @@
 package com.jtd.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.jtd.dto.LyDto;
 import com.jtd.dto.TaskDto;
 import com.jtd.entity.BaseTask;
@@ -41,24 +46,14 @@ public class LyController {
 	
 	@RequestMapping(value = "/myTask",method = RequestMethod.POST)
 	@ResponseBody
-	public List<LyDto> getmyTask(){
-		List<LyDto> taskDtos=new ArrayList<LyDto>();
+	public PageInfo<?> getmyTask(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
 		User user=userService.findByUsername(SecurityContextUtil.getCurrentUser());
-		List<Task> tasks=activitiService.queryTask(user);
-		for (Task task : tasks) { 
-			 LyDto lyDto=new LyDto();
-			 Ly ly=lyService.selectByProInstIdAndTaskId(task.getProcessInstanceId());
-			 lyDto.setId(ly.getId());
-			 lyDto.setRemark(ly.getRemark());
-			 lyDto.setTaskId(task.getId());
-			 lyDto.setTaskName(task.getName());
-			 lyDto.setAssingee(task.getAssignee());
-			 lyDto.setTaskCreateTime(task.getCreateTime());
-		     System.out.println("ID:"+task.getId()+",姓名:"+task.getName()+",接收人:"+task.getAssignee()+",开始时间:"+task.getCreateTime());  
-		     taskDtos.add(lyDto);
-		     
-		} 
-		return taskDtos;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("user", user);
+		List<LyDto> taskDtos=lyService.queryTask(pageNum, pageSize,map);
+	
+		PageInfo<?> pageInfo = new PageInfo<LyDto>(taskDtos);
+		return pageInfo;
 	}
 	
 

@@ -1,7 +1,9 @@
 package com.jtd.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.jtd.dto.LyDto;
 import com.jtd.entity.Ly;
 
 public interface LyService {
@@ -13,5 +15,7 @@ public interface LyService {
 
 	public int update(Ly ly);
 
-	public Ly selectByProInstIdAndTaskId(String processInstanceId);
+	public List<LyDto> selectByProInstId(Map<String, Object> map);
+
+	public List<LyDto> queryTask(Integer pageNum, Integer pageSize, Map<String, Object> map);
 }

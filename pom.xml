@@ -200,7 +200,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.3.0</version>
+            <version>3.2.8</version>
         </dependency>
         
          <!-- MySQL相关包 -->
@@ -295,6 +295,13 @@
 		</dependency>
 		<!-- activiti end -->
 		
+		<!--分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>${pagehelper.version}</version>
+		</dependency>
+		
   </dependencies>
   
   
@@ -303,6 +310,10 @@
         <spring.version>4.3.8.RELEASE</spring.version>
         
         <activiti.version>5.22.0</activiti.version>
+        
+        <!-- 分页版本 -->
+        <mapper.version>3.0.0</mapper.version>
+		<pagehelper.version>3.6.2</pagehelper.version>
     </properties>
   
   	<!-- 指定maven编译方式为jdk1.7版本 -->  

@@ -6,7 +6,6 @@
 	<resultMap id="BaseResultMap" type="com.jtd.entity.Ly">
         <id column="ID" property="id" jdbcType="DECIMAL"/>
          <result column="PROC_INST_ID" property="procInstId" jdbcType="VARCHAR"/>
-         <result column="TASK_ID" property="taskId" jdbcType="VARCHAR"/>
         <result column="USER_ID" property="userId" jdbcType="DECIMAL"/>
         <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
         <result column="REBACK" property="reback" jdbcType="VARCHAR"/>
@@ -15,6 +14,14 @@
         <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP"/>
     </resultMap>
+    
+    <resultMap id="DtoBaseResultMap" type="com.jtd.dto.LyDto" extends="BaseResultMap">
+        <result column="TASK_ID" property="taskId" jdbcType="VARCHAR"/>
+        <result column="TASK_NAME" property="taskName" jdbcType="VARCHAR"/>
+        <result column="ASSIGNEE" property="assignee" jdbcType="VARCHAR"/>
+        <result column="TASK_CREATE_TIME" property="taskCreateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    
     <sql id="Base_Column_List" >
 	    ID, USER_ID, REMARK, REBACK, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE
 	</sql>
@@ -52,14 +59,26 @@
     </select>
     
     <insert  id="insert">
-   		insert  into `tb_ly`(`USER_ID`,`PROC_INST_ID`,`TASK_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) values(#{userId},#{procInstId},#{taskId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
+   		insert  into `tb_ly`(`USER_ID`,`PROC_INST_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) values(#{userId},#{procInstId},#{taskId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
   	</insert>
   	
   	<select id="getLs" resultMap="BaseResultMap">
         SELECT * FROM tb_ly 
     </select>
     
-    <select id="selectByProInstIdAndTaskId" resultMap="BaseResultMap">
-    	SELECT * FROM tb_ly WHERE 1=1 and PROC_INST_ID=#{processInstanceId} 
+    <select id="selectByProInstId" parameterType="java.util.Map" resultMap="DtoBaseResultMap">
+    	SELECT 
+    	ly.*,
+    	task.ID_ as TASK_ID,
+    	task.NAME_ AS TASK_NAME,
+    	task.ASSIGNEE_ AS assignee,
+    	task.CREATE_TIME_ as TASK_CREATE_TIME
+    	FROM tb_ly ly 
+    	JOIN act_ru_task task ON ly.proc_inst_id=task.PROC_INST_ID_ 
+    	WHERE 1=1 
+    	  and ly.PROC_INST_ID in 
+    	  <foreach item="procInstId" index="index" collection="procInstIds" open="(" separator="," close=")">
+    	  #{procInstId} 
+    	  </foreach>
   	</select>
 </mapper>
