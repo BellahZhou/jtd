@@ -56,7 +56,7 @@
 	                        <div class="text_wrap" ng-bind="x.taskName"></div>
 	                    </td>
 	                    <td>
-	                        <div class="text_wrap" ng-bind="x.assingee"></div>
+	                        <div class="text_wrap" ng-bind="x.assignee"></div>
 	                    </td>
 	                    <td>
 	                        <div class="text_wrap">{{ x.taskCreateTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>

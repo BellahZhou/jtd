@@ -71,7 +71,7 @@
     	ly.*,
     	task.ID_ as TASK_ID,
     	task.NAME_ AS TASK_NAME,
-    	task.ASSIGNEE_ AS assignee,
+    	task.ASSIGNEE_ AS ASSIGNEE,
     	task.CREATE_TIME_ as TASK_CREATE_TIME
     	FROM tb_ly ly 
     	JOIN act_ru_task task ON ly.proc_inst_id=task.PROC_INST_ID_ 
