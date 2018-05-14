@@ -1,7 +1,6 @@
 <#assign ctx = "${request.contextPath}"/>
 <#include "/common/ftl/p/dictEntry.ftl"/>
 <#macro ItemDetailJs>
-debugger
 	<@itemDictJs/>
 	
 	// 返回

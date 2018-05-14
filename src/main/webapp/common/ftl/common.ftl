@@ -18,11 +18,15 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/common/css/bootstrap-theme.css"/>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/vpplayer.css"/>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/ngDialog.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/common/css/ngDialog-theme-default.css"/>
 	<script type="text/javascript" src="${ctx}/common/js/jquery-1.11.1.min.js"></script> 
 	<script type="text/javascript" src="${ctx}/common/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${ctx}/common/js/vpplayer.js"></script> 
     <script type="text/javascript" src="${ctx}/common/js/jquery.twbsPagination.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular-1.3.1.min.js"></script>
+    <script type="text/javascript" src="${ctx}/common/js/angular/ngDialog.js"></script>
+    <script type="text/javascript" src="${ctx}/common/js/angular/angular.bootstrap.ui.modal.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/angular.ajax.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/angular/loading-bar.js"></script>
 	<script type="text/javascript" src="${ctx}/common/js/angular/angular.dict.js"></script>
@@ -47,7 +51,6 @@
                 return (a >= 0);
             },
             pushPageData: function (c) {
-            	debugger
                 for (var b = 0,
                              a = c.length; b < a; b++) {
                     this[this.length] = c[b];

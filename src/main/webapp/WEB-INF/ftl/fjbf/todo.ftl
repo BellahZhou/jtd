@@ -91,7 +91,7 @@ margin-bottom: 15px;
 	<@javascript>
 	<script type="text/javascript">
 	    var indexApp = angular.module("indexApp", ["commApp"]);
-	    indexApp.controller("indexCtrl", ['$scope','$Ajax',function ($scope,$Ajax) {
+	    indexApp.controller("indexCtrl", ['$scope','$Ajax','$modal',function ($scope,$Ajax,$modal) {
 	    	$Ajax({url: "${ctx}/fjbf/music.do"}).then(function (data) {
 	    		$scope.music=data;
 	    		$("#player").vpplayer({
@@ -113,10 +113,10 @@ margin-bottom: 15px;
                         data: angular.toJson($scope.fjbf)
                 }).then(function (data) {
                 	if(data==1){
-                		alert("提交成功");
+                		$modal.alert("提交成功");
                 		$scope.show=true;
                 	}else{
-                		alert("提交失败");
+                		$modal.alert("提交失败");
                 	}
                 	window.location.reload();
                 });
@@ -126,7 +126,7 @@ margin-bottom: 15px;
 	    	$scope.song=function(){
 	    		if(($scope.fjbf==null)||!$scope.fjbf.positiveWords||!$scope.fjbf.nothingTheMatter
 	    			||!$scope.fjbf.aboutFuture||!$scope.fjbf.importantThings){
-	    			alert("只有完成所有的事情才可以听歌哦");
+	    			$modal.alert("只有完成所有的事情才可以听歌哦");
 	    			return;
 	    		}else{
 	    			$scope.show=true;

@@ -59,7 +59,8 @@
     </select>
     
     <insert  id="insert">
-   		insert  into `tb_ly`(`USER_ID`,`PROC_INST_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) values(#{userId},#{procInstId},#{taskId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
+   		insert  into `tb_ly`(`USER_ID`,`PROC_INST_ID`,`REMARK`,`CREATE_BY`,`CREATE_DATE`,`UPDATE_BY`,`UPDATE_DATE`) 
+   		values(#{userId},#{procInstId},#{remark},#{createBy},#{createDate},#{updateBy},#{updateDate})
   	</insert>
   	
   	<select id="getLs" resultMap="BaseResultMap">

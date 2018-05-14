@@ -86,7 +86,7 @@
 	<@javascript>
 	<script type="text/javascript">
 	    var indexApp = angular.module("indexApp", ["commApp"]);
-	    indexApp.controller("indexCtrl", ['$scope','$dictService','$Ajax','$PagingService',function ($scope,$dictService,$Ajax,$PagingService) {
+	    indexApp.controller("indexCtrl", ['$scope','$dictService','$Ajax','$PagingService','$modal',function ($scope,$dictService,$Ajax,$PagingService,$modal) {
 	    	<@p.ItemDetailJs/>
 	    	
 	    	$scope.query=function(){
@@ -94,7 +94,7 @@
 	    		$PagingService.query({
 	                url: "${ctx}/ly/myTask.do"
 		        }).listen(function (responseData) {
-		        	debugger
+		        	
 	                $scope.tasks.pushPageData(responseData.list);
 	            });
 	    	}
@@ -102,7 +102,8 @@
 	    	
 	    	$scope.doSubmit=function(){
 	    		if(!$scope.item.remark){
-	    			alert("不可以提交哦，请填写好哦");
+	    			$modal.alert("不可以提交哦，请填写好哦");
+	    			return;
 	    		}
 	    		$Ajax({
 	    				
@@ -111,12 +112,13 @@
 	                    contentType: "application/json",
                         data: angular.toJson($scope.item)
                 }).then(function (data) {
+                	debugger
                 	if(data==1){
-                		alert("提交成功");
+                		$modal.alert("提交成功");
                 	}else{
-                		alert("提交失败");
+                		$modal.alert("提交失败");
                 	}
-                	$scope.query();
+                	
                 });
 	    		
 	    	}

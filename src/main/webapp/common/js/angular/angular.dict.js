@@ -8,7 +8,6 @@
  */
 angular.module("angular.dict", ['angular.ajax'])
     .provider("$dictService", function () {
-    	debugger
         var map = {};
         var ORG_MAP = {};
         var DEPT_MAP = {};

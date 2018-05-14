@@ -49,9 +49,9 @@
                     data: angular.toJson(x)
                 }).then(function (data) {
                     if (data == 1) {
-                    	alert("更新成功!");
+                    	$modal.alert("更新成功!");
                     }else{
-                        alert("更新失败!");
+                    	$modal.alert("更新失败!");
                     }
                 	window.location.reload();
                 });
