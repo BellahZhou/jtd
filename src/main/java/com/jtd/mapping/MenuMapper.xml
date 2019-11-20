@@ -41,14 +41,14 @@
 	  </select>
 
 	<sql id="AuthorityByUserId">
-        EXISTS (SELECT 'x' FROM TB_USER_ROLE ur , TB_ROLE_MENU rm WHERE
+        EXISTS (SELECT 'x' FROM tb_user_role ur , tb_role_menu rm WHERE
         ur.ROLE_ID = rm.ROLE_ID AND rm.MENU_ID = t.ID AND ur.USER_ID = #{userId})
     </sql>
 
     <select id="getMenusByUserId" resultMap="DtoBaseResultMap">
         SELECT t.*,
         CASE WHEN <include refid="AuthorityByUserId"/> THEN '1' ELSE '0' END HAS_AUTH 
-        FROM TB_MENU t WHERE 1=1
+        FROM tb_menu t WHERE 1=1
         <if test="menu.menuLevel != null">
             AND t.MENU_LEVEL = #{menu.menuLevel}
         </if>
@@ -69,7 +69,7 @@
 
    
     <select id="getMenusAuthorityByUserId"  parameterType="java.util.HashMap"  resultMap="DtoBaseResultMap">
-        SELECT t.* FROM TB_MENU t WHERE 1=1
+        SELECT t.* FROM tb_menu t WHERE 1=1
         <if test="menu.menuLevel != null">
             AND t.MENU_LEVEL = #{menu.menuLevel}
         </if>

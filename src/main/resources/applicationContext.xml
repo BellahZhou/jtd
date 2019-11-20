@@ -12,8 +12,8 @@
     <!-- application-servlet -->
     <import resource="classpath:spring-mvc.xml"/>
     
-     <!-- spring-task -->
-    <import resource="classpath:task.xml"/>
+     <!-- spring-task 
+    <import resource="classpath:task.xml"/>-->
     
     <!-- 导入activiti配置文件 -->  
  	<import resource="activiti.cfg.xml"/>  

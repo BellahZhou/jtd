@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Table(name = "TB_MENU")
+@Table(name = "tb_menu")
 public class Menu extends IDE implements Serializable{
 	
 	private static final long serialVersionUID = 8026813053768023527L;
